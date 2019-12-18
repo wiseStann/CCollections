@@ -1,20 +1,9 @@
 /* Insides of Singly Linked List data structure */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdarg.h>
+#include <utils/basic.h>
 
 #ifndef SINGLY_LINKED_LIST_H
 #define SINGLY_LINKED_LIST_H
-
-// Defining some macroses for handling popular errors
-#define _EMPTY_LIST_ERROR panic("%s:%d in '%s': given list is empty", __FILE__, __LINE__, __FUNCTION__);
-#define _MEMORY_ALLOCATION_ERROR panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
-#define _INDEX_ERROR(index_name) panic("%s:%d: in '%s': index %d is not within the bounds of list", __FILE__, __LINE__, __FUNCTION__, (int)index_name)
-#define _VALUE_ERROR(value_name) panic("%s:%d: in '%s': value %d is not in list", __FILE__, __LINE__, __FUNCTION__, (int)value_name)
 
 // Node structure
 typedef struct Node_type {
