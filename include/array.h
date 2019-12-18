@@ -1,26 +1,13 @@
 /* Insides of Dynamic Array data structure */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdarg.h>
-#include <math.h>
-
+#include <utils/basic.h>
 
 #ifndef DYNAMIC_ARRAY_H
 #define DYNAMIC_ARRAY_H
 
 #define STANDARD_EXPANSION_VAL 1.5
 #define STANDARD_CAPACITY 10
-#define MAXSIZE pow(2, 31)
-
-// Defining some macroses for handling popular errors
-#define _EMPTY_ARRAY_ERROR panic("%s:%d in '%s': given array is empty", __FILE__, __LINE__, __FUNCTION__);
-#define _MEMORY_ALLOCATION_ERROR panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
-#define _INDEX_ERROR(index_name) panic("%s:%d: in '%s': index %d is not within the bounds of array", __FILE__, __LINE__, __FUNCTION__, (int)index_name)
-#define _VALUE_ERROR(value_name) panic("%s:%d: in '%s': value %d is not in array", __FILE__, __LINE__, __FUNCTION__, (int)value_name)
+#define MAXSIZE INT_MAX
 
 
 // Array data structure
