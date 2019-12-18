@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdarg.h>
+#include <limits.h>
 
 
 // Defining some macroses for handling popular errors
