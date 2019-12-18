@@ -1,24 +1,13 @@
 /* Insides of Stack data structure with base Dynamic Array */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdarg.h>
-#include <math.h>
-
+#include <utils/basic.h>
 
 #ifndef DA_STACK_H
 #define DA_STACK_H
 
 #define STANDARD_EXPANSION_VAL 1.5
 #define STANDARD_CAPACITY 10
-#define MAXSIZE pow(2, 31)
-
-// Defining a macrose for handling popular error
-#define _EMPTY_STACK_ERROR panic("%s:%d in '%s': given stack is empty", __FILE__, __LINE__, __FUNCTION__);
-#define _MEMORY_ALLOCATION_ERROR panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
+#define MAXSIZE INT_MAX
 
 // Stack data structure, based on Dynamic array
 typedef struct Stack_type {
