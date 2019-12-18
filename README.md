@@ -1,2 +1,2 @@
 # CCollections
-Data structures which can be useful in your work
+> Data structures which can be useful in your work
