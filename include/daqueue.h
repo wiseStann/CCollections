@@ -1,24 +1,13 @@
 /* Insides of Queue data structure with base DA */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdarg.h>
-#include <math.h>
-
+#include <utils/basic.h>
 
 #ifndef DA_QUEUE_H
 #define DA_QUEUE_H
 
 #define STANDARD_EXPANSION_VAL 1.5
 #define STANDARD_CAPACITY 10
-#define MAXSIZE pow(2, 31)
-
-// Defining a macrose for handling popular errors
-#define _EMPTY_QUEUE_ERROR panic("%s:%d in '%s': given queue is empty", __FILE__, __LINE__, __FUNCTION__);
-#define _MEMORY_ALLOCATION_ERROR panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
+#define MAXSIZE INT_MAX
 
 // Queue data structure, based on Linked List
 typedef struct Queue_type {
