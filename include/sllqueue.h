@@ -1,21 +1,11 @@
 /* Insides of Queue data srtucture with base SSL */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdarg.h>
-#include <math.h>
-
+#include <utils/basic.h>
 
 #ifndef SSL_QUEUE_H
 #define SSL_QUEUE_H
 
-#define MAXSIZE pow(2, 31)
-
-// Defining a macrose for handling popular error
-#define _MEMORY_ALLOCATION_ERROR panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
+#define MAXSIZE INT_MAX
 
 // Node structure
 typedef struct Node_type {
