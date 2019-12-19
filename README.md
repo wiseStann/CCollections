@@ -1,7 +1,7 @@
 # CCollections
 > Data structures which can be useful in your work with C programming language
 
-![C is the best](https://www.edjio.com/images/course-logo/c-and-data-structures.png width=200 height=100)
+![C is the best](https://www.edjio.com/images/course-logo/c-and-data-structures.png style="width=200 height=100")
 
 
 ### What is a Data Structure?
