@@ -37,9 +37,6 @@ static Array* arrayNew();
 // New configurations for creating custom array
 static Config* const configsNew(size_t cap, double exp_val);
 
-// Showing an error message
-static void panic(const char* message, ...);
-
 // Custom initialization of array
 static Array* arrayCustomNew(Config* const configuration);
 
