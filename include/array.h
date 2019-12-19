@@ -1,6 +1,7 @@
 /* Insides of Dynamic Array data structure */
 
-#include <utils/basic.h>
+#include "utils/basic.h"
+#include "utils/array_sortings.h"
 
 #ifndef DYNAMIC_ARRAY_H
 #define DYNAMIC_ARRAY_H
