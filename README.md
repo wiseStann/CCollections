@@ -7,5 +7,5 @@
 ### What is a Data Structure?
 > 
 
-### Something about popular data structures
+### About popular data structures
 > 
