@@ -4,8 +4,8 @@
 ![](https://www.edjio.com/images/course-logo/c-and-data-structures.png)
 
 
-## What is a Data Structure?
+### What is a Data Structure?
 > 
 
-## Something about popular data structures
+### Something about popular data structures
 > 
