@@ -24,9 +24,6 @@ static Queue* queueNew();
 // New queue creation using a given array
 static Queue* queueFromArr(int* array, int size);
 
-// Showing an error message
-static void panic(const char* message, ...);
-
 // Appending an element to the end of queue
 void enqueue(Queue* queue, void* item);
 
