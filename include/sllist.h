@@ -1,6 +1,7 @@
 /* Insides of Singly Linked List data structure */
 
-#include <utils/basic.h>
+#include "utils/basic.h"
+#include "utils/list_sortings.h"
 
 #ifndef SINGLY_LINKED_LIST_H
 #define SINGLY_LINKED_LIST_H
