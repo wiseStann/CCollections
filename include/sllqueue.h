@@ -30,9 +30,6 @@ static Queue* queueFromArr(int* array, int size);
 // New node creation
 static Node* nodeNew(void* value);
 
-// Showing an error message
-static void panic(const char* message, ...);
-
 // Appending an element to the end of queue
 void enqueue(Queue* queue, void* item);
 
