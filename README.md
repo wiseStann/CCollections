@@ -1,7 +1,7 @@
 # CCollections
 > Data structures which can be useful in your work with C programming language
 
-![](https://www.edjio.com/images/course-logo/c-and-data-structures.png)
+![C is the best](https://www.edjio.com/images/course-logo/c-and-data-structures.png)
 
 
 ### What is a Data Structure?
@@ -10,3 +10,8 @@
 
 ### About popular data structures
 > 
+&nbsp; &nbsp; * Array - the simplest data sctructure
+&nbsp; &nbsp; * List - 
+&nbsp; &nbsp; * Stack - 
+&nbsp; &nbsp; * Queue -
+&nbsp; &nbsp; * HashTable -
