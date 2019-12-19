@@ -25,9 +25,6 @@ static List* listNew();
 // New node creation
 static Node* nodeNew(void* value);
 
-// Showing an error message
-static void panic(const char* message, ...);
-
 // Appending an element to the end of the list
 void listPush(List* list, void* value);
 
