@@ -2,10 +2,6 @@
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" alt="CDS"/>
 </p>
 
-# CCollections
-> Data structures which can be useful in your work with C programming language
-
-
 ### What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
 
