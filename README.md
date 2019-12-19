@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/StarKerrr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" alt="CDS"/>
 </p>
 
 # CCollections
