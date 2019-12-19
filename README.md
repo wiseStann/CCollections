@@ -1,4 +1,6 @@
-![C is the best](https://www.edjio.com/images/course-logo/c-and-data-structures.png)
+<p align="center">
+  <img src="https://github.com/StarKerrr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
+</p>
 
 # CCollections
 > Data structures which can be useful in your work with C programming language
