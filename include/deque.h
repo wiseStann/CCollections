@@ -63,7 +63,7 @@ void dequeExpandCapacity(Deque* deque);
 void dequeCutCapacity(Deque* deque);
 
 // Deleting a given deque
-static void dequeClear(deque* deque);
+static void dequeClear(Deque* deque);
 
 // Clearing a given deque
 static void dequeDelete(Deque* deque);
