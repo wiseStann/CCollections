@@ -6,6 +6,8 @@
 #ifndef SINGLY_LINKED_LIST_H
 #define SINGLY_LINKED_LIST_H
 
+#define listSize(x) (x->size)
+
 // Node structure
 typedef struct Node_type {
     void* data;
