@@ -1,6 +1,6 @@
 /*
 
--> Linked List (singly) collection <-
+-> Singly Linked List collection <-
 
 This software is free and can be used and modifyied by anyone
 under the terms of the GNU General Public License as
@@ -31,7 +31,7 @@ Check Error macroses in header file.
 
 A short description of all:
  -> [_EMPTY_LIST_ERROR], a macros for notification about empty given list
- -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memoty allocatione error
+ -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
  -> [_INDEX_ERROR], a macros for notification about wrong given index
  -> [_VALUE_ERROR], a macros for notification about value, which is not in list
 
