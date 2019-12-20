@@ -11,7 +11,7 @@
 // Denote maximum capacity for the queue just for controlling size of allocated memory
 #define MAXSIZE INT_MAX
 
-// Stack data structure, based on Dynamic array
+// Stack data structure based on Dynamic array
 typedef struct Stack_type {
     size_t size;
     size_t capacity;
