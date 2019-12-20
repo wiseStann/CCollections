@@ -51,7 +51,7 @@ size_t dequeSize(Deque* deque);
 bool dequeIsEmpty(Deque* deque);
 
 // Checking if deque is full or not
-bool dequeIsFull(Deque* Deque);
+bool dequeIsFull(Deque* deque);
 
 // Checking if the size of deque is less than the MAXSIZE or not
 bool dequeSizeIsValid(Deque* deque);
