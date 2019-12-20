@@ -24,7 +24,7 @@ typedef struct Deque_type {
 
 -> Macroses <-
 
- -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given queue
+ -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given deque
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
@@ -33,6 +33,9 @@ typedef struct Deque_type {
 
 static Deque* dequeNew();
 static Deque* dequeFromArr(int* array, int size);
+static void dequeClear(Deque* deque);
+static void dequeDelete(Deque* deque);
+
 void dequeAdd(Deque* deque, void* item);
 void dequeAddLeft(Deque* deque, void* item);
 void* dequePop(Deque* deque);
@@ -45,8 +48,6 @@ bool dequeIsFull(Deque* deque);
 bool dequeSizeIsValid(Deque* deque);
 void dequeExpandCapacity(Deque* deque);
 void dequeCutCapacity(Deque* deque);
-static void dequeClear(Deque* deque);
-static void dequeDelete(Deque* deque);
 
 
 /*
@@ -91,7 +92,7 @@ Making a deque using a given array.
     -> [size], the size of a given array
  
  Parameters [out]:
-    -> [deque], a made queue using a given array
+    -> [deque], a made deque using a given array
 
 */
 static Deque* dequeFromArr(int* array, int size)
@@ -338,7 +339,7 @@ bool dequeSizeIsValid(Deque* deque)
 /*
 
 Expansion of the capacity when it is necessary.
-> Given queue must not be empty.
+> Given deque must not be empty.
 > Complex time - most likely O(n).
 
 * Actually this stuff is made due to dynamic memory allocation, it is very
