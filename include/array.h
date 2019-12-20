@@ -15,9 +15,9 @@
 
 // Array data structure
 typedef struct Array_type {
-    // The size of Array, i.e. how many elements it contains
+    // The size of array, i.e. how many elements it contains
     size_t size;
-    // The capacity of Array, i.e. dynamic memory block
+    // The capacity of array, i.e. dynamic memory block
     size_t capacity;
     // The expansion value, i.e. how rapidly the capacity will expand
     double exp_val;
