@@ -11,7 +11,7 @@
 // Denote maximum capacity for the queue just for controlling size of allocated memory
 #define MAXSIZE INT_MAX
 
-// Deque data structure, based on Dynamic Array
+// Deque data structure based on Dynamic Array
 typedef struct Deque_type {
 	size_t size;
 	size_t capacity;
