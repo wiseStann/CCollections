@@ -1,8 +1,6 @@
 /* Implementations of popular sorting algorithms for Array data structure */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "basic.h"
 
 #ifndef ARRAY_SORTINGS_H
 #define ARRAY_SORTINGS_H
