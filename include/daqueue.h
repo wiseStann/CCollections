@@ -9,7 +9,7 @@
 #define STANDARD_CAPACITY 10
 #define MAXSIZE INT_MAX
 
-// Queue data structure, based on Linked List
+// Queue data structure, based on Dynamic Array
 typedef struct Queue_type {
     size_t size;
     size_t capacity;
