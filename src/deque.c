@@ -1,6 +1,6 @@
 /*
 
--> Queue collection (Base: Dynamic Array) <-
+-> Deque collection (Base: Dynamic Array) <-
 
 This software is free and can be used and modifyied by anyone
 under the terms of the GNU General Public License as
