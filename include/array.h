@@ -8,6 +8,8 @@
 
 #define STANDARD_EXPANSION_VAL 1.5
 #define STANDARD_CAPACITY 10
+
+// Denote maximum capacity for the queue just for controlling size of allocated memory
 #define MAXSIZE INT_MAX
 
 
