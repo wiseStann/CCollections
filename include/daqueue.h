@@ -7,6 +7,8 @@
 
 #define STANDARD_EXPANSION_VAL 1.5
 #define STANDARD_CAPACITY 10
+
+// Denote maximum capacity for the queue just for controlling size of allocated memory
 #define MAXSIZE INT_MAX
 
 // Queue data structure, based on Dynamic Array
@@ -45,7 +47,7 @@ bool queueIsEmpty(Queue* queue);
 // Checking if queue is full or not
 bool queueIsFull(Queue* queue);
 
-// Checks if the size of queue is less than the MAXSIZE or not
+// Checking if the size of queue is less than the MAXSIZE or not
 bool queueSizeIsValid(Queue* queue);
 
 // Expanding capacity of a given queue
