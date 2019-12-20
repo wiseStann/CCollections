@@ -39,8 +39,6 @@ A short description of all:
 
 #include "../include/sllist.h"
 
-#define listSize(x) (x->size)
-
 static List* listNew();
 static Node* nodeNew(void* value);
 static void listClear(List* list);
