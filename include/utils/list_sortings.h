@@ -1,8 +1,6 @@
 /* Implementations of popular sorting algorithms for List data structure */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "basic.h"
 
 #ifndef LIST_SORTINGS_H
 #define LIST_SORTINGS_H
