@@ -25,5 +25,10 @@
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
-  An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array.
+&nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array.
 </div>
+
+</br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; The usage of Array data structure:
+ ![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png)
