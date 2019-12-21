@@ -30,6 +30,8 @@
 
 </br>
 
-<p><h3 align="center">The usage of Array data structure:</h3></br></p>
+<p><h3 align="center"></br>The usage of Array data structure:</h3></br></p>
 </br>
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png" width="400px" height="200px"> 
+<p align="center">
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png" width="400px" height="300px"> 
+</p>
