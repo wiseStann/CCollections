@@ -21,7 +21,7 @@
 
 ### About popular data structures
 
-<p><h4 align="center">Array</h4></br></p>
+<p><h3 align="center">Array</h3></br></p>
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
