@@ -410,17 +410,32 @@ void listRemoveFirst(List* list, void* value)
         _EMPTY_LIST_ERROR;
     } else if (!listContains(list, value)) {
         _VALUE_ERROR(value);
+    } else if (list->head->data == value) {
+        listRemoveBegin(list);
     } else {
-        size_t curr_index = 0;
+        /*  We traverse the list and search a node with a given value. When it is found, 
+         * we connect left and right neighbours of this node together and break the loop.
+         * Thus, the node, the value of which was given, just goes out of linked list:
+         * 
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 | -> | 7 | -> NULL
+         *  |
+         *  V
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> |Desirable Node| -> | 6 | -> | 7 | -> NULL
+         *  |
+         *  V
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 |
+         */
         Node* curr_node = list->head;
+        Node* last_node;
         while (curr_node) {
             if (curr_node->data == value) {
+                last_node->next = curr_node->next;
                 break;
             }
+            last_node = curr_node;
             curr_node = curr_node->next;
-            curr_index++;
         }
-        listRemoveAt(list, curr_index);
+        list->size--;
     }
 }
 
@@ -445,6 +460,12 @@ void listRemoveLast(List* list, void* value)
     } else if (!listContains(list, value)) {
         _VALUE_ERROR(value);
     } else {
+        /*  We start the counter and increment it every time. When the value of current node
+         * is equal to a given value, we assign the value of counter to special variable 'last_index'.
+         * So, when the loop ends, this variable will store the index of the element with given value
+         * with the last occurrence.
+         *
+         */
         size_t curr_index = 0;
         Node* curr_node = list->head;
         size_t last_index;
