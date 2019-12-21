@@ -50,6 +50,15 @@ bool queueIsEmpty(Queue* queue);
 bool queueIsFull(Queue* queue);
 bool queueSizeIsValid(Queue* queue);
 
+/*
+   Features which will be added soon:
+  - void queueRemove(Queue* queue, void* value);
+  - void queueInsert(Queue* queue, size_t index, void* value);
+  - size_t queueGetValue(Queue* queue, size_t index);
+  - size_t queueCount(Queue* queue, void* value);
+  - bool queueContains(Queue* queue, void* value);
+*/
+
 
 /*
 
