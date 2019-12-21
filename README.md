@@ -1,4 +1,4 @@
-<p align="right">
+<p align="center">
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" alt="CDS"/>
 </p>
 
