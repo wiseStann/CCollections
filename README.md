@@ -3,21 +3,14 @@
 </p>
 
 ## About this project
->
-
-</br>
 
 ### What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
 
 &nbsp; &nbsp; &nbsp; &nbsp; Different data structures are suited for different problems. Some data structures are useful for simple general problems, such as retrieving data that has been stored with a specific identifier. For example, an online dictionary can be structured so that it can retrieve the definition of a word. On the other hand, specialized data structures have been devised to solve complex specific search problems.                                               
 
-</br>
-
 ### Why learn data structures?
 &nbsp; &nbsp; &nbsp; &nbsp; Computer software is all about handling data. Data covers all types of information and the more basic forms are numbers and strings. Data structures explain how data is organized. This structure dictates how fast and efficient your code will run. Once you deeply understand how data structures work, your code will run better and be prettier. On the data scientist side, we all write code, but writing good code also opens you up to software engineering opportunities. Surely, learning something that allows you to be good in your own craft while expanding into other lucrative fields can’t be that bad.     
-
-</br>
 
 ### About popular data structures
 
@@ -31,7 +24,7 @@
 </br>
 
 <p><h3 align="center"></br>The usage of Array data structure:</h3></br></p>
-</br>
+
 <p align="center">
-  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png" width="600px" height="500px"> 
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png" width="650px" height="500px"> 
 </p>
