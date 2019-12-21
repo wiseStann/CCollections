@@ -30,5 +30,6 @@
 
 </br>
 
-&nbsp; &nbsp; &nbsp; &nbsp; The usage of Array data structure:
- ![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png)
+### The usage of Array data structure:
+</br>
+<img src="https://github.com/StarKerrr/CCollections/blob/master/res/ArrayScreen.png" width="700px" height="550px"> 
