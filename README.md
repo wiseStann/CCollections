@@ -13,7 +13,7 @@
 &nbsp; &nbsp; * 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
-  <h1 style="font-size: 15px">Array - the simplest data sctructure. The problem that I'm having is that when including an image in README.md as ![basic CRUD](BasicCrud.png), with the image file in the same directory, the displayed README file is expanding the image to the width of the screen. I don't want it to scale the image at all! Really, why would it do that by default? I also would prefer to not use HTML (though if that's the only solution, I'll do that). Furthermore, I'll eventually include a lot of images - it would be a pain to have to look up the size of each and use an explicit size in README.md</h1>
+  Array - the simplest data sctructure. The problem that I'm having is that when including an image in README.md as ![basic CRUD](BasicCrud.png), with the image file in the same directory, the displayed README file is expanding the image to the width of the screen. I don't want it to scale the image at all! Really, why would it do that by default? I also would prefer to not use HTML (though if that's the only solution, I'll do that). Furthermore, I'll eventually include a lot of images - it would be a pain to have to look up the size of each and use an explicit size in README.md
 </div>
 
 &nbsp; &nbsp; * List - 
