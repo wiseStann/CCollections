@@ -13,9 +13,8 @@
 ## About popular data structures
 > 
 &nbsp; &nbsp; * Array - the simplest data sctructure 
-<p align="right">
-  ![]("https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true")
-</p>
+![]("https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true")
+
 &nbsp; &nbsp; * List - 
 &nbsp; &nbsp; * Stack - 
 &nbsp; &nbsp; * Queue -
