@@ -18,6 +18,7 @@ typedef struct Node_type {
 typedef struct SLL_type {
     size_t size;
     Node* head;
+    Node* tail;
 } List;
 
 
