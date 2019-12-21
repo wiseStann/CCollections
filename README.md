@@ -14,7 +14,7 @@
 > 
 &nbsp; &nbsp; * Array - the simplest data sctructure 
 <p align="right">
-  ![](https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true)
+  ![](https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png)
 </p>
 
 &nbsp; &nbsp; * List - 
