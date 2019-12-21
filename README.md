@@ -15,7 +15,7 @@
 
 ### About popular data structures
 
-<p align="center">
+<p style="padding-left: 30px">
   * Array *
 </p>
 
