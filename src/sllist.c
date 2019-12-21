@@ -3,7 +3,7 @@
 -> Singly Linked List collection <-
 
 This software is free and can be used and modifyied by anyone
-under the terms of the GNU General Public License as
+under the terms of the GNU Lesser General Public License as
 published by the Free Software Foundation, either version 3
 of the License, or any later version.
 
@@ -27,7 +27,7 @@ typedef struct SLL_type {
 
 -> Macroses <-
 
-Check Error macroses in header file.
+Check Error macroses in "include/utils/basic.h" header file.
 
 A short description of all:
  -> [_EMPTY_LIST_ERROR], a macros for notification about empty given list
@@ -39,11 +39,12 @@ A short description of all:
 
 #include "../include/sllist.h"
 
+#define listSize(x) (x->size)
+
 static List* listNew();
 static Node* nodeNew(void* value);
 static void listClear(List* list);
 static void listDelete(List* list);
-static void print(List* list, bool show_size);
 
 void listPush(List* list, void* value);
 void listPrepend(List* list, void* value);
@@ -62,7 +63,8 @@ void* listGetBegin(List* list);
 void* listGetEnd(List* list);
 void* listPop(List* list);
 void* listPoll(List* list);
-List* listCopy(List* list);
+List* listShallCopy(List* list);
+List* listDeepCopy(List* list);
 size_t listCount(List* list, void* value);
 List* listSublist(List* list, size_t begin_index, size_t end_index);
 bool listContains(List* list, void* value);
@@ -97,8 +99,10 @@ static List* listNew()
         _MEMORY_ALLOCATION_ERROR;
         exit(1);
     }
+
     list->size = 0;
     list->head = NULL;
+    list->tail = NULL;
     return list;
 }
 
@@ -123,6 +127,11 @@ static Node* nodeNew(void* value)
     }
     node->data = value;
     node->next = NULL;
+    
+    /*  So now we have a new node like that:
+     *      |NEW NODE(value)| -> NULL
+     */
+    
     return node;
 }
 
@@ -139,16 +148,34 @@ Appending a given element to the end of the list.
     -> NULL
 */
 void listPush(List* list, void* value)
-{
+{   
+    /*  If the list is absolutely empty, we create the head.
+       Also we assign the value of the head to the tail */ 
     if (!list->head) {
         list->head = nodeNew(value);
+        list->tail = list->head;
     } else {
+    /*  Because we want to append an item to the end of the list, we
+     * have to traverse it to the end.
+     */ 
         Node* curr_node = list->head;
         while (curr_node->next) {
             curr_node = curr_node->next;
         }
-        curr_node->next = nodeNew(value);
+    /*  Now we create a new node, assign it to the tail of the list
+     * and connect the last one to the new tail.
+     *
+     *                                  |new node|
+     *  | 1 | -> | 2 | -> | 3 | -> NULL     v
+     *
+     */
+        list->tail = nodeNew(value);
+        curr_node->next = list->tail;
     }
+    /*  Now our list looks like that:
+     *  | 1 | -> | 2 | -> | 3 | -> |new node| -> NULL
+     */
+    
     list->size++;
 }
 
@@ -166,16 +193,26 @@ Prepending a given element to the beginning of the list.
 */
 void listPrepend(List* list, void* value)
 {
+    /*  Create a new node that should be prepended to the list, i.e:
+     *
+     *  |new node|                     * LIST *
+     *      |       head                                        tail
+     *      V      | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 |
+     *
+     */
     Node* new_node = nodeNew(value);
-    if (!new_node) {
-        _MEMORY_ALLOCATION_ERROR;
-        exit(1);
-    } else if (!list->head) {
+    
+    if (!list->head) {
         list->head = new_node;
     } else {
         new_node->next = list->head;
         list->head = new_node;
     }
+    /*  Now we have the next case:
+     *      head                                                    tail 
+     *  |new node| -> | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 |
+     */
+    
     list->size++;
 }
 
@@ -196,13 +233,31 @@ Insertion a given element to a specific position.
 */
 void listInsert(List* list, size_t index, void* value)
 {
+    // If a given index is 0 then we just prepend new node to the list
     if (index == 0) {
         listPrepend(list, value);
+    // Some error cases
     } else if (!list->head && index > 0) {
         _EMPTY_LIST_ERROR;
     } else if (index > list->size) {
         _INDEX_ERROR(index);
     } else {
+        /*  We start the counter and increment it every time. When the counter
+         * will be equal to given index, we split two nodes, i.e. disconnect
+         * the first node standing on the given index from the second and insert a new one between them, i.e:
+         * 
+         *                           *LIST*
+         *      | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> NULL
+         *   |                                            
+         *   V                          |new node| 
+         *      | 1 | -> | 2 | -> | 3 |      v     | 4 | -> | 5 | -> NULL
+         *   |
+         *   V
+         *      | 1 | -> | 2 | -> | 3 | -> |new node| -> | 4 | -> | 5 | -> NULL 
+         * 
+         *  For insert operation we just connect left node (in our case 3) to a new one
+         * and a new one connect to the right node (in out case 4).
+         */
         size_t curr_index = 1;
         Node* new_node = nodeNew(value);
         Node* curr_node = list->head;
@@ -239,12 +294,21 @@ void listRemoveEnd(List* list)
         free(list->head);
         list->head = NULL;
     } else {
+        // Traverse the list to the end
         Node* curr_node = list->head;
         while (curr_node->next->next) {
             curr_node = curr_node->next;
         }
+        // Free the last node, i.e. clear allocated memory
         free(curr_node->next);
+        // Equate this node to NULL, in order to make right border of list
         curr_node->next = NULL;
+        /*
+         *     | 1 | -> | 2 | -> | 3 | -> NULL
+         *  |
+         *  V
+         *     | 1 | -> | 2 | -> NULL
+         */
     }
     list->size--;
 }
@@ -253,7 +317,7 @@ void listRemoveEnd(List* list)
 
 Remove the first element of a given list.
 > Given list must not be empty.
-> Complex time - O(n).
+> Complex time - const.
 
  Parameters [in]:
     -> [list], a list, the first element of which should be removed
@@ -265,12 +329,14 @@ void listRemoveBegin(List* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR; return;
-    } else if (list->size == 1) {
-        free(list->head);
-        list->head->data = NULL;
     } else {
+        /*  Create a new variable equals to node standing after the head node,
+         * Free head node, i.e. clear allocated memory, assign the next_node value to
+         * the head of list, so now the head of list is the second node in initial list.
+         */
+        Node* next_node = list->head->next;
         free(list->head);
-        list->head = list->head->next;
+        list->head = next_node;
     }
     list->size--;
 }
@@ -297,6 +363,18 @@ void listRemoveAt(List* list, size_t index)
     } else if (index == 0) {
         listRemoveBegin(list);
     } else {
+        /*  We start the counter and increment it every time. When it will be equal to 
+         * a given index, we connect left and right neighbours of the node with this index
+         * together. Thus, the node, index of which was given, just goes out of linked list:
+         * 
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 | -> | 7 | -> NULL
+         *  |
+         *  V
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> |Desirable Node| -> | 6 | -> | 7 | -> NULL
+         *  |
+         *  V
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 |
+         */
         size_t curr_index = 0;
         Node* curr_node = list->head;
         Node* last_node;
@@ -456,26 +534,17 @@ Creating a new copy, reversing it and return, i.e. not 'in-place'.
  Parameters [out]:
     -> [reversed_list], reversed copy of a given list
 
-
+*/
 List* listReverseNew(List* list)
 {
     if (!list->head) {
         return list;
     }
 
-    List* reversed_list = listNew();
-    if (!reversed_list) {
-        _MEMORY_ALLOCATION_ERROR;
-        listRemove(reversed_list);
-        exit(1);
-    }
-
-    reversed_list->head = list->head;
-    reversed_list->size = list->size;
+    List* reversed_list = listShallCopy(list);
     listReverseMut(reversed_list);
     return reversed_list;
 }
-*/
 
 /*
 
@@ -575,7 +644,7 @@ void* listGetBegin(List* list)
 
 Getting the last element of a given list.
 > Given list must not be empty.
-> Complex time - O(n).
+> Complex time - const.
 
  Parameters [in]:
     -> [list], a list, the last element of which should be returned
@@ -590,13 +659,8 @@ void* listGetEnd(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
-    
-    Node* curr_node = list->head;
-    while (curr_node->next) {
-        curr_node = curr_node->next;
-    }
 
-    void* tail = curr_node->data;
+    void* tail = list->tail->data;
     return tail;
 }
 
@@ -619,6 +683,7 @@ void* listPop(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
+
     void* end = listGetEnd(list);
     listRemoveEnd(list);
     return end;
@@ -628,7 +693,7 @@ void* listPop(List* list)
 
 Remove and getting the first element of a given list.
 > Given list must not be empty.
-> Complex time - O(n).
+> Complex time - const.
 
  Parameters [in]:
     -> [list], a list, the first element of which should be removed and returned
@@ -643,6 +708,7 @@ void* listPoll(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
+
     void* begin = listGetBegin(list);
     listRemoveBegin(list);
     return begin;
@@ -651,22 +717,48 @@ void* listPoll(List* list)
 /*
 
 Making and return a shallow copy of a given list.
+> Complex time - O(n).
+
+ Parameters [in]:
+    -> [list], a list, a shallow copy of which should be returned
+
+ Parameters [out]:
+    -> [copied_list], a shallow copy of a given list
+
+*/
+List* listShallCopy(List* list)
+{
+    if (!list->head) {
+        return listNew();
+    }
+
+    List* copied_list = listNew();
+    Node* curr_node = list->head;
+    while (curr_node) {
+        listPush(copied_list, curr_node->data);
+        curr_node = curr_node->next;
+    }
+    return copied_list;
+}
+/*
+
+Making and return a deep copy of a given list.
 > Complex time - const.
 
  Parameters [in]:
-    -> [list], a list, a copy of which should be returned
+    -> [list], a list, a deep copy of which should be returned
 
  Parameters [out]:
-    -> [copied_list], a copy of a given list
+    -> [copied_list], a deep copy of a given list
 
 */
-List* listCopy(List* list)
+List* listDeepCopy(List* list)
 {
-    List* copied_list = listNew();
-    if (!copied_list) {
-        _MEMORY_ALLOCATION_ERROR;
-        exit(1);
+    if (!list->head) {
+        return list;
     }
+
+    List* copied_list = listNew();
 
     copied_list->head = list->head;
     copied_list->size = list->size;
@@ -874,7 +966,7 @@ Swappin two elements of a given list by indexes.
 > Complex time - O(n).
 
  Parameters [in]:
-    -> [list], a list, two elements of which should be swapped by their indexes
+    -> [list], a list, two elements of which should be swapped
     -> [f_index], index of the first element for swapping
     -> [s_index], index of the second element for swapping
 
@@ -903,7 +995,7 @@ void listSwapByIndexes(List* list, size_t f_index, size_t s_index)
 Swappin two elements of a given list by values.
 > Given list must not be empty.
 > First value must be in a given list.
-> Second value must be in a given list.
+> Second index must be in a given list.
 > Complex time - O(n).
 
  Parameters [in]:
@@ -1024,10 +1116,11 @@ void listExtend(List* f_list, List* s_list)
         while (curr_node->next) {
             curr_node = curr_node->next;
         }
-        for (int i = 0; i < s_list->size; i++) {
+        while (s_list_node) {
             curr_node->next = s_list_node;
             curr_node = curr_node->next;
-            s_list_node = s_list_node->next; 
+            s_list_node = s_list_node->next;
+            f_list->size++;
         }
     }
 }
@@ -1073,9 +1166,9 @@ void listSortMut(List* list, List*(*func)(List*))
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
-    } else {
-        func(list);
     }
+    
+    func(list);
 }
 
 /*
@@ -1100,14 +1193,11 @@ List* listSortNew(List* list, List*(*func)(List*))
         return listNew();
     }
 
-    func(list);
+    // Create a shallow copy of a give list
+    List* sorted_list = listShallCopy(list);
+    func(sorted_list);
 
-    // Creating new list
-    List* new_list = listNew();
-    new_list->size = list->size;
-    new_list->head = list->head;
-
-    return new_list;
+    return sorted_list;
 }
 
 /*
@@ -1138,7 +1228,7 @@ static void listClear(List* list)
 
 /*
 
-Clearing all memory that was allocated for the list.
+Clearing a given list with deleting allocated memory, actually remove.
 > Given list must not be empty.
 > Complex time - O(n).
 
