@@ -22,6 +22,7 @@ typedef struct Node_type {
 typedef struct SLL_type {
     size_t size;
     Node* head;
+    Node* tail;
 } List;
 
 
@@ -83,7 +84,7 @@ List* listSortNew(List* list, List*(*func)(List*));
 /*
 
 New list creation.
-> Complex time - O(n).
+> Complex time - const.
 
  Parameters [in]:
     -> NULL
@@ -109,7 +110,7 @@ static List* listNew()
 /*
 
 New node creation.
-> Complex time - O(n).
+> Complex time - const.
 
  Parameters [in]:
     -> [value], a value, which should be the data of new node
@@ -162,10 +163,11 @@ void listPush(List* list, void* value)
         while (curr_node->next) {
             curr_node = curr_node->next;
         }
+        
     /*  Now we create a new node, assign it to the tail of the list
      * and connect the last one to the new tail.
      *
-     *                                  |new node|
+     *   head             tail          |new node|
      *  | 1 | -> | 2 | -> | 3 | -> NULL     v
      *
      */
@@ -242,17 +244,18 @@ void listInsert(List* list, size_t index, void* value)
     } else if (index > list->size) {
         _INDEX_ERROR(index);
     } else {
+        
         /*  We start the counter and increment it every time. When the counter
          * will be equal to given index, we split two nodes, i.e. disconnect
          * the first node standing on the given index from the second and insert a new one between them, i.e:
          * 
-         *                           *LIST*
+         *       head                *LIST*         tail
          *      | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> NULL
          *   |                                            
-         *   V                          |new node| 
+         *   V   head                   |new node|          tail
          *      | 1 | -> | 2 | -> | 3 |      v     | 4 | -> | 5 | -> NULL
          *   |
-         *   V
+         *   V   head                                             tail
          *      | 1 | -> | 2 | -> | 3 | -> |new node| -> | 4 | -> | 5 | -> NULL 
          * 
          *  For insert operation we just connect left node (in our case 3) to a new one
@@ -303,10 +306,11 @@ void listRemoveEnd(List* list)
         free(curr_node->next);
         // Equate this node to NULL, in order to make right border of list
         curr_node->next = NULL;
-        /*
+        
+        /*      head             tail
          *     | 1 | -> | 2 | -> | 3 | -> NULL
          *  |
-         *  V
+         *  V   head    tail
          *     | 1 | -> | 2 | -> NULL
          */
     }
@@ -330,8 +334,9 @@ void listRemoveBegin(List* list)
     if (!list->head) {
         _EMPTY_LIST_ERROR; return;
     } else {
+        
         /*  Create a new variable equals to node standing after the head node,
-         * Free head node, i.e. clear allocated memory, assign the next_node value to
+         * Free head node, i.e. clear allocated memory, assign the next_node to
          * the head of list, so now the head of list is the second node in initial list.
          */
         Node* next_node = list->head->next;
@@ -363,17 +368,18 @@ void listRemoveAt(List* list, size_t index)
     } else if (index == 0) {
         listRemoveBegin(list);
     } else {
+        
         /*  We start the counter and increment it every time. When it will be equal to 
          * a given index, we connect left and right neighbours of the node with this index
          * together. Thus, the node, index of which was given, just goes out of linked list:
-         * 
+         *      head                                                 tail
          *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 | -> | 7 | -> NULL
          *  |
-         *  V
+         *  V   head                                                            tail
          *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> |Desirable Node| -> | 6 | -> | 7 | -> NULL
          *  |
-         *  V
-         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 |
+         *  V   head                                        tail  
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 | -> NULL
          */
         size_t curr_index = 0;
         Node* curr_node = list->head;
@@ -413,17 +419,18 @@ void listRemoveFirst(List* list, void* value)
     } else if (list->head->data == value) {
         listRemoveBegin(list);
     } else {
+        
         /*  We traverse the list and search a node with a given value. When it is found, 
          * we connect left and right neighbours of this node together and break the loop.
          * Thus, the node, the value of which was given, just goes out of linked list:
-         * 
+         *      head                                                 tail
          *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 5 | -> | 6 | -> | 7 | -> NULL
          *  |
-         *  V
+         *  V   head                                                            tail 
          *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> |Desirable Node| -> | 6 | -> | 7 | -> NULL
          *  |
-         *  V
-         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 |
+         *  V   head                                        tail  
+         *     | 1 | -> | 2 | -> | 3 | -> | 4 | -> | 6 | -> | 7 | -> NULL
          */
         Node* curr_node = list->head;
         Node* last_node;
@@ -457,14 +464,15 @@ void listRemoveLast(List* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
+      // If list doesn't contain an item then just throw the error
     } else if (!listContains(list, value)) {
         _VALUE_ERROR(value);
     } else {
+        
         /*  We start the counter and increment it every time. When the value of current node
          * is equal to a given value, we assign the value of counter to special variable 'last_index'.
          * So, when the loop ends, this variable will store the index of the element with given value
          * with the last occurrence.
-         *
          */
         size_t curr_index = 0;
         Node* curr_node = list->head;
@@ -476,6 +484,7 @@ void listRemoveLast(List* list, void* value)
             curr_node = curr_node->next;
             curr_index++;
         }
+        // And now we just invoke 'listRemoveAt' function with last_index as a parameter
         listRemoveAt(list, last_index);
     }
 }
@@ -498,9 +507,15 @@ void listRemoveAll(List* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
+      // If list doesn't contain an item then just throw the error
     } else if (!listContains(list, value)) {
         _VALUE_ERROR(value);
     } else {
+        
+        /*  We start the counter and increment it every time. When the value of current node
+         * is equal to a given value, we invoke 'listRemoveAt' function with the counter as the parameter
+         * and remove the node which is standing at the index with the counter value.
+         */
         size_t curr_index = 0;
         Node* curr_node = list->head;
         while (curr_node) {
@@ -531,10 +546,14 @@ void listReverseMut(List* list)
     if (!list->head) {
         _EMPTY_LIST_ERROR; return;
     }
-
-    Node* prev = NULL; 
+    
+    /* 
+     *   Check out this video for detailed explanation:
+     *   https://www.youtube.com/watch?v=O0By4Zq0OFc
+     */
     Node* current = list->head; 
     Node* next = NULL;
+    Node* prev = NULL;
     while (current != NULL) { 
         next = current->next; 
         current->next = prev; 
@@ -561,7 +580,13 @@ List* listReverseNew(List* list)
     if (!list->head) {
         return list;
     }
-
+    
+    /*  We make a shallow copy of a given list and
+     * and reverse it.
+     *  We can't apply deep copy here because we want that
+     * further manipulations with reversed list don't affect
+     * the given list.
+     */ 
     List* reversed_list = listShallCopy(list);
     listReverseMut(reversed_list);
     return reversed_list;
@@ -584,9 +609,14 @@ Getting an index of a given element, or -1 if there is no elements with a such v
 size_t listGetIndex(List* list, void* value)
 {
     if (!list->head) {
-        _EMPTY_LIST_ERROR; return -1;
+        _EMPTY_LIST_ERROR;
+        return -1;
     }
-
+    
+    /*  We start the counter and increment it every time. When the value of given
+     * node is equal to a given value, we return the value of counter. This way we
+     * can find index of element easily.
+     */
     size_t curr_index = 0;
     Node* curr_node = list->head;
     while (curr_node) {
@@ -620,11 +650,16 @@ void* listGetAt(List* list, size_t index)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
         return NULL;
+      // If a given index is bigger than the list size then throw the error
     } if (index >= list->size) {
         _INDEX_ERROR(index);
         return NULL;
     }
-
+    
+    /*  We start the counter and increment it every time. When the counter is  
+     * equal to a given index, we return the data of node standing at the
+     * corresponding position.
+     */
     size_t curr_index = 0;
     Node* curr_node = list->head;
     while (curr_node) {
@@ -656,7 +691,8 @@ void* listGetBegin(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
-
+    
+    // Just directly get the data of the head node of the list and return it
     void* head = list->head->data;
     return head;
 }
@@ -680,7 +716,8 @@ void* listGetEnd(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
-
+    
+    // Just directly get the data of the tail node of the list and return it
     void* tail = list->tail->data;
     return tail;
 }
@@ -704,8 +741,10 @@ void* listPop(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
-
+    
+    // Get the tail of the list
     void* end = listGetEnd(list);
+    // Remove the tail of the list making the previous element as the tail
     listRemoveEnd(list);
     return end;
 }
@@ -729,8 +768,10 @@ void* listPoll(List* list)
         _EMPTY_LIST_ERROR;
         return NULL;
     }
-
+    
+    // Get the head of the list
     void* begin = listGetBegin(list);
+    // Remove the head of the list making the next element as the head
     listRemoveBegin(list);
     return begin;
 }
