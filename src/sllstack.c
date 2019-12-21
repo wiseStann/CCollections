@@ -51,6 +51,15 @@ bool stackIsFull(Stack* stack);
 bool stackSizeIsValid(Stack* stack);
 void print(Stack* stack, bool show_size);
 
+/*
+   Features which will be added soon:
+  - void stackRemove(Stack* stack, void* value);
+  - void stackInsert(Stack* stack, size_t index, void* value);
+  - size_t stackGetValue(Stack* stack, size_t index);
+  - size_t stackCount(Stack* stack, void* value);
+  - bool stackContains(Stack* stack, void* value);
+*/
+
 
 /*
 
