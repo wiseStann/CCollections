@@ -51,11 +51,11 @@ void print(Stack* stack, bool show_size, bool show_cap);
 
 /*
    Features which will be added soon:
-  - void queueRemove(Queue* queue, void* value);
-  - void queueInsert(Queue* queue, size_t index, void* value);
-  - size_t queueGetValue(Queue* queue, size_t index);
-  - size_t queueCount(Queue* queue, void* value);
-  - bool queueContains(Queue* queue, void* value);
+  - void stackRemove(Stack* stack, void* value);
+  - void stackInsert(Stack* stack, size_t index, void* value);
+  - size_t stackGetValue(Stack* stack, size_t index);
+  - size_t stackCount(Stack* stack, void* value);
+  - bool stackContains(Stack* stack, void* value);
 */
 
 
