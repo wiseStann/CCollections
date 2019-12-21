@@ -49,6 +49,16 @@ bool dequeSizeIsValid(Deque* deque);
 void dequeExpandCapacity(Deque* deque);
 void dequeCutCapacity(Deque* deque);
 
+/*
+   Features which will be added soon:
+  - Deque* dequeCopy(Deque* deque);
+  - size_t dequeCount(Deque* deque, void* value);
+  - void dequeExtend(Deque* f_deque, Deque* s_deque);
+  - void dequeExtendLeft(Deque* f_deque, Deque* s_deque);
+  - void dequeRemove(Deque* deque, void* value);
+  - void dequeReverse(Deque* deque);
+*/
+
 
 /*
 
