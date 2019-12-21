@@ -15,7 +15,7 @@
 
 ### About popular data structures
 
-<p align="justify">Array</p>
+<p align="center">Array</p>
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
