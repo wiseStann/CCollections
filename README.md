@@ -10,7 +10,10 @@
 
 ## About popular data structures
 > 
-&nbsp; &nbsp; * Array - the simplest data sctructure
+&nbsp; &nbsp; * Array - the simplest data sctructure 
+<p align="right">
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true" alt="CDS"/ style="float: right">
+</p>
 &nbsp; &nbsp; * List - 
 &nbsp; &nbsp; * Stack - 
 &nbsp; &nbsp; * Queue -
