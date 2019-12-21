@@ -12,7 +12,7 @@
 > 
 &nbsp; &nbsp; * Array - the simplest data sctructure 
 <p align="right">
-  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true" alt="CDS"/ style="float: right; width: 200px; height: 100px">
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png?raw=true" alt="CDS" style="float: right; width: 500px; height: 250px">
 </p>
 &nbsp; &nbsp; * List - 
 &nbsp; &nbsp; * Stack - 
