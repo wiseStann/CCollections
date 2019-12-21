@@ -48,6 +48,15 @@ void queueExpandCapacity(Queue* queue);
 void queueCutCapacity(Queue* queue);
 void print(Queue* queue, bool show_size, bool show_cap);
 
+/*
+   Features which will be added soon:
+  - void queueRemove(Queue* queue, void* value);
+  - void queueInsert(Queue* queue, size_t index, void* value);
+  - size_t queueGetValue(Queue* queue, size_t index);
+  - size_t queueCount(Queue* queue, void* value);
+  - bool queueContains(Queue* queue, void* value);
+*/
+
 
 /*
 
