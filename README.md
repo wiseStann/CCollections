@@ -33,5 +33,7 @@
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; Let's see what features the library provide to use a linked list data structure.
+</br>
+
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/SListUsage.png)
 </br></br>
