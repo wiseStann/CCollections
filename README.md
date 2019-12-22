@@ -1,4 +1,4 @@
-![](https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png)
+<img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="650px">
 
 ## - About this project
 
