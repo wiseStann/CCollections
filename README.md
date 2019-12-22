@@ -30,7 +30,7 @@
 <h3>Linked List</h3>
 
 <img src="https://github.com/StarKerrr/CCollections/blob/master/res/linked-list.svg" width="650px">
-&nbsp; &nbsp; &nbsp; &nbsp; One disadvantage of using arrays to store data is that arrays are static structures and therefore can't be easily extended or reduced to fit the data set. Unlike arrays, the elements in linked lists are not stored at contiguous memory locations. They are linked using pointers as shown in the image above. Each element of a list is comprising of two items - the data and a reference to the next node. The last node has a reference to null. A linked list is a dynamic data structure. The number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.
+&nbsp; &nbsp; &nbsp; &nbsp; One disadvantage of using arrays to store data is that arrays are static structures and therefore can't be easily extended or reduced to fit the data set. Unlike arrays, the elements in linked lists are not stored at contiguous memory locations. They are linked using pointers as shown in the image above. Each element of a list is comprising of two items - the data and a reference to the next node. The last node has a reference to null. A linked list is a dynamic data structure, therefore number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; Let's see what features the library provide to use a linked list data structure.
@@ -44,13 +44,13 @@
 </br>
 
 <img src="https://github.com/StarKerrr/CCollections/blob/master/res/stackImg.png" width="650px">
-&nbsp; &nbsp; &nbsp; &nbsp; A stack is a basic data structure that can be logically thought of as a linear structure represented by a real physical stack or pile, a structure where insertion and deletion of items takes place at one end called top of the stack. The basic concept can be illustrated by thinking of your data set as a stack of plates or books where you can only take the top item off the stack in order to remove things from it. The basic implementation of a stack is also called a LIFO (Last In First Out) to demonstrate the way it accesses data.
+&nbsp; &nbsp; &nbsp; &nbsp; A stack is a basic data structure that can be logically thought of as a linear structure represented by a real physical stack or pile, a structure where insertion and deletion of items takes place at one end called top of the stack. The basic concept can be illustrated by thinking of your data set as a stack of books or cards where you can only take the **top item** off the stack in order not to destroy all the stack of things. The basic implementation of a stack is also called a **LIFO** (Last In First Out) to demonstrate the way it accesses data.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; In my library you can find two implementations of Stack, viz. dynamic array-based and singly linked list-based. Well, that's how you can use Stack in your code.
 </br>
 
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
-</br></br>
+</br></br></br>
 
 ## - How to build and run the library
