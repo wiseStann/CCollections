@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="600px" height="300px">
+  <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="500px" height="250px">
 </p>
 
 ## - About this project
@@ -14,7 +14,7 @@
 
 ### - About popular data structures
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <h3>Array</h3>
+##### 1.       Array
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
