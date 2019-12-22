@@ -41,6 +41,8 @@
 
 <h3>Stack</h3>
 
+</br>
+
 <img src="https://github.com/StarKerrr/CCollections/blob/master/res/stackImg.png" width="650px">
 &nbsp; &nbsp; &nbsp; &nbsp; Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something.
 </br></br>
@@ -48,5 +50,5 @@
 &nbsp; &nbsp; &nbsp; &nbsp; Well, that's how you can use Stack in your code.
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/StackUsage.png)
+![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
 </br></br>
