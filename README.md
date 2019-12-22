@@ -17,7 +17,7 @@
 <h3>Array</h3>
 
 <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" width="650px">
-&nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array. This data structure is the base of majority of data structures and it's not a surprising.
+&nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array. This data structure is the base of majority of data structures and it isn't surprising.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; As it was said above, this library is the library of generic data structures and array is not an exception. The usage of Array data structure is truly simple:
@@ -28,4 +28,10 @@
 
 <h3>Linked List</h3>
 
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/linked-list.svg" align="right" width="500px" height="250px">
+<img src="https://github.com/StarKerrr/CCollections/blob/master/res/linked-list.svg" width="650px">
+&nbsp; &nbsp; &nbsp; &nbsp; One disadvantage of using arrays to store data is that arrays are static structures and therefore can't be easily extended or reduced to fit the data set. Unlike arrays, the elements in linked lists are not stored at contiguous memory locations. They are linked using pointers as shown in the image above. Each element of a list is comprising of two items - the data and a reference to the next node. The last node has a reference to null. A linked list is a dynamic data structure. The number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.
+</br></br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; Let's see what features the library provide to use a linked list data structure.
+![](https://github.com/StarKerrr/CCollections/blob/master/res/SListUsage.png)
+</br></br>
