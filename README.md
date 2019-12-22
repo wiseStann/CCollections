@@ -25,6 +25,4 @@
 
 <p><h3 align="center"></br>The usage of Array data structure:</h3></br></p>
 
-<p align="center">
-  ![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayUsage.png)
-</p>
+![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayUsage.png)
