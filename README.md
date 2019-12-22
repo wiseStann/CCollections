@@ -38,3 +38,15 @@
 
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/SListUsage.png)
 </br></br>
+
+<h3>Stack</h3>
+
+<img src="https://github.com/StarKerrr/CCollections/blob/master/res/linked-list.svg" width="650px">
+&nbsp; &nbsp; &nbsp; &nbsp; Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something.
+</br></br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; Well, that's how you can use Stack in your code.
+</br>
+
+![](https://github.com/StarKerrr/CCollections/blob/master/res/SListUsage.png)
+</br></br>
