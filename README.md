@@ -50,5 +50,5 @@
 &nbsp; &nbsp; &nbsp; &nbsp; Well, that's how you can use Stack in your code.
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/stackNew.png)
+![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
 </br></br>
