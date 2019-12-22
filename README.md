@@ -18,7 +18,7 @@
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
-&nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array.
+&nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array. But this library is the library of generic data structures as it was said, that's why we can store data of different types.
 </div>
 
 </br>
