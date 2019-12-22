@@ -52,3 +52,5 @@
 
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
 </br></br>
+
+## - How to build and run the library
