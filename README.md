@@ -3,14 +3,17 @@
 </p>
 
 ## - About this project
- 
+&nbsp; &nbsp; &nbsp; &nbsp; This is the library of generic data structures, which can be useful in your code. And here we go!
+</br>
+&nbsp; &nbsp; &nbsp; &nbsp; As we know, C doesn't have special collections like linked lists or stacks and this is rather terrible because embedded arrays often can't satisfy all our needs. First of all, they have a fixed size, i.e. they can't be dynamically expanded. Secondly, we can't put the data of different type into array, only the same. This fact also isn't convenient.
+
 ## - What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
 
 &nbsp; &nbsp; &nbsp; &nbsp; Different data structures are suited for different problems. Some data structures are useful for simple general problems, such as retrieving data that has been stored with a specific identifier. For example, an online dictionary can be structured so that it can retrieve the definition of a word. On the other hand, specialized data structures have been devised to solve complex specific search problems.                                               
 
 ## - Why should we learn data structures?
-&nbsp; &nbsp; &nbsp; &nbsp; Computer software is all about handling data. Data covers all types of information and the more basic forms are numbers and strings. Data structures explain how data is organized. This structure dictates how fast and efficient your code will run. Once you deeply understand how data structures work, your code will run better and be prettier. On the data scientist side, we all write code, but writing good code also opens you up to software engineering opportunities. Surely, learning something that allows you to be good in your own craft while expanding into other lucrative fields can’t be that bad.     
+&nbsp; &nbsp; &nbsp; &nbsp; Computer software is all about handling data. Data covers all types of information and the more basic forms are `numbers` and `strings`. Data structures explain how data is organized. This structure dictates how fast and efficient your code will run, that's why, depending on what type of data structure you have chosen, your program can be executed in a millisecond or in a minute. Once you deeply understand how data structures work, your code will run better and be prettier. On the data scientist side, we all write code, but writing good code also opens you up to software engineering opportunities. Surely, learning something that allows you to be good in your own craft while expanding into other lucrative fields can’t be that bad. Data structures play crucial role for programmers.     
 
 ## - About popular data structures
 
