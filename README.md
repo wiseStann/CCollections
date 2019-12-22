@@ -14,7 +14,7 @@
 
 ### - About popular data structures
 
-##### 1.       Array
+#### 1. Array
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
