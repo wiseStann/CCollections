@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="650px">
 </p>
+
 ## - About this project
 
 ### - What is a Data Structure?
