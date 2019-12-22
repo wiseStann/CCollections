@@ -4,7 +4,7 @@
 
 ## About this project
 
-![#f03c15](https://placehold.it)
+![#f03c15](https://placehold.it) `#f03c15`
 
 ### What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
