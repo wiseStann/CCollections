@@ -14,7 +14,7 @@
 
 ### About popular data structures
 
-<p><h3 align="center">Array</h3></br></p>
+<p><h3 align="center">Array</h3></p>
 
 <div>
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" align="right" width="500px" height="250px">
@@ -23,6 +23,6 @@
 
 </br>
 
-<p><h3 align="center"></br>The usage of Array data structure:</h3></br></p>
+<p><h3 align="center"></br>The usage of Array data structure:</h3></p>
 
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayUsage.png)
