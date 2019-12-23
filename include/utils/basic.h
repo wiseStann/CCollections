@@ -21,9 +21,9 @@
 
 #define _MEMORY_ALLOCATION_ERROR \
   panic("%s:%d: in '%s': could not allocate memory", __FILE__, __LINE__, __FUNCTION__);
-#define _INDEX_ERROR(index_name) \
+#define _INDEX_ERROR \
   panic("%s:%d: in '%s': index %d is not within the bounds of container", __FILE__, __LINE__, __FUNCTION__, (int)index_name)
-#define _VALUE_ERROR(value_name) \
+#define _VALUE_ERROR \
   panic("%s:%d: in '%s': value %d is not in container", __FILE__, __LINE__, __FUNCTION__, (int)value_name)
 
 // Showing an error message to a user
