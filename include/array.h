@@ -99,15 +99,6 @@ size_t arrayCount(Array* array, void* value);
 // Getting a substring from array, something like python's slice
 Array* arraySubarray(Array* array, size_t begin_index, size_t end_index);
 
-// Getting the sum of all elements in a given array
-double arraySum(Array* array);
-
-// Getting the average value of all elements in a given array
-double arrayMean(Array* array);
-
-// Getting an element with the minimum value
-void* arrayMin(Array* array);
-
 // Getting an element with the maximum value
 void* arrayMax(Array* array);
 
