@@ -203,9 +203,9 @@ void listPrepend(List* list, void* value)
      *
      */
     Node* new_node = nodeNew(value);
-    
     if (!list->head) {
         list->head = new_node;
+        list->tail = list->head;
     } else {
         new_node->next = list->head;
         list->head = new_node;
@@ -242,7 +242,7 @@ void listInsert(List* list, void* value, size_t index)
     } else if (!list->head && index > 0) {
         _EMPTY_LIST_ERROR;
     } else if (index > list->size) {
-        _INDEX_ERROR(index);
+        _INDEX_ERROR;
     } else {
         
         /*  We start the counter and increment it every time. When the counter
@@ -272,6 +272,10 @@ void listInsert(List* list, void* value, size_t index)
             }
             curr_node = curr_node->next;
             curr_index++;
+        }
+
+        if (index == listSize(list)) {
+            list->tail = new_node;
         }
         list->size++;
     }
@@ -306,7 +310,7 @@ void listRemoveEnd(List* list)
         free(curr_node->next);
         // Equate this node to NULL, in order to make right border of list
         curr_node->next = NULL;
-        
+        list->tail = curr_node;
         /*      head             tail
          *     | 1 | -> | 2 | -> | 3 | -> NULL
          *  |
@@ -364,9 +368,11 @@ void listRemoveAt(List* list, size_t index)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } else if (index >= list->size) {
-        _INDEX_ERROR(index);
+        _INDEX_ERROR;
     } else if (index == 0) {
         listRemoveBegin(list);
+    } else if (index == list->size - 1) {
+        listRemoveEnd(list);   
     } else {
         
         /*  We start the counter and increment it every time. When it will be equal to 
@@ -415,7 +421,7 @@ void listRemoveFirst(List* list, void* value)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } else if (!listContains(list, value)) {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     } else if (list->head->data == value) {
         listRemoveBegin(list);
     } else {
@@ -466,7 +472,7 @@ void listRemoveLast(List* list, void* value)
         _EMPTY_LIST_ERROR;
       // If list doesn't contain an item then just throw the error
     } else if (!listContains(list, value)) {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     } else {
         
         /*  We start the counter and increment it every time. When the value of current node
@@ -509,7 +515,7 @@ void listRemoveAll(List* list, void* value)
         _EMPTY_LIST_ERROR;
       // If list doesn't contain an item then just throw the error
     } else if (!listContains(list, value)) {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     } else {
         
         /*  We start the counter and increment it every time. When the value of current node
@@ -652,7 +658,7 @@ void* listGetAt(List* list, size_t index)
         return NULL;
       // If a given index is bigger than the list size then throw the error
     } if (index >= list->size) {
-        _INDEX_ERROR(index);
+        _INDEX_ERROR;
         return NULL;
     }
     
@@ -849,6 +855,10 @@ Counting the number of appearences of a given value in the list.
 */
 size_t listCount(List* list, void* value)
 {
+    if (!list->head) {
+        _EMPTY_LIST_ERROR;
+        return 0;
+    }
     /*  We start the counter and increment it every time when
      * the value of current node is equal to the given value.
      */
@@ -975,9 +985,9 @@ void listSwapByIndexes(List* list, size_t f_index, size_t s_index)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } if (f_index >= list->size) {
-        _INDEX_ERROR(f_index);
+        _INDEX_ERROR;
     } else if (s_index >= list->size) {
-        _INDEX_ERROR(s_index);
+        _INDEX_ERROR;
     } else {
         void* f_value = listGetAt(list, f_index);
         void* s_value = listGetAt(list, s_index);
@@ -1008,9 +1018,9 @@ void listSwapValues(List* list, void* f_value, void* s_value)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } if (!listContains(list, f_value)) {
-        _VALUE_ERROR(f_value);
+        _VALUE_ERROR;
     } else if (!listContains(list, s_value)) {
-        _VALUE_ERROR(s_value);
+        _VALUE_ERROR;
     } else {
         // Getting indexes of given values
         size_t f_index = listGetIndex(list, f_value);
@@ -1041,7 +1051,7 @@ void listReplaceByIndex(List* list, size_t index, void* value)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } if (index >= list->size) {
-        _INDEX_ERROR(index);
+        _INDEX_ERROR;
     } else {
         
         /*  We start the counter (current index of element) and increment
@@ -1082,7 +1092,7 @@ void listReplaceByValue(List* list, void* value_to_repl, void* value_for_repl)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } if (!listContains(list, value_to_repl)) {
-        _VALUE_ERROR(value_to_repl);
+        _VALUE_ERROR;
     } else {
         
         /*  We iterate over the list and compare current node value to a
