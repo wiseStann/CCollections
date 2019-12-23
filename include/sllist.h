@@ -35,7 +35,7 @@ void listPush(List* list, void* value);
 void listPrepend(List* list, void* value);
 
 // Inserting an element at the specific position
-void listInsert(List* list, size_t index, void* value);
+void listInsert(List* list, void* value, size_t index);
 
 // Remove last element of the list
 void listRemoveEnd(List* list);
