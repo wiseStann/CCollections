@@ -91,15 +91,6 @@ void listReverseMut(List* list);
 // Creating a copy, reversing it and return
 List* listReverseNew(List* list);
 
-// Getting the sum of all element of the list
-int listSum(List* list);
-
-// Getting an element with the minimum value
-void* listMin(List* list);
-
-// Getting an element with the maximum value
-void* listMax(List* list);
-
 // Swapping two elements by the given indexes
 void listSwapByIndexes(List* list, size_t f_index, size_t s_index);
 
