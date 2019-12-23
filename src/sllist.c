@@ -233,7 +233,7 @@ Insertion a given element to a specific position.
  Parameters [out]:
     -> NULL
 */
-void listInsert(List* list, size_t index, void* value)
+void listInsert(List* list, void* value, size_t index)
 {
     // If a given index is 0 then we just prepend new node to the list
     if (index == 0) {
@@ -793,7 +793,10 @@ List* listShallCopy(List* list)
     if (!list->head) {
         return listNew();
     }
-
+    
+    /*  Creating a new list and copying all elements from
+       the old one to the new.
+     */
     List* copied_list = listNew();
     Node* curr_node = list->head;
     while (curr_node) {
@@ -821,7 +824,11 @@ List* listDeepCopy(List* list)
     }
 
     List* copied_list = listNew();
-
+    
+    /*  Here we directly assign the head node of a given list
+     * to the head of a new one, that's why all changes in the new list
+     * will affect the old one.
+     */
     copied_list->head = list->head;
     copied_list->size = list->size;
     return copied_list;
@@ -842,6 +849,9 @@ Counting the number of appearences of a given value in the list.
 */
 size_t listCount(List* list, void* value)
 {
+    /*  We start the counter and increment it every time when
+     * the value of current node is equal to the given value.
+     */
     size_t count = 0;
     Node* curr_node = list->head;
     while (curr_node) {
@@ -884,6 +894,15 @@ List* listSublist(List* list, size_t begin_index, size_t end_index)
     }
 
     List* sublist = listNew();
+    
+    /*  We start the counter (current index of element in list) and
+     * start infinite loop. When the counter is within the bounds of two 
+     * given indexes we push current element into the new list. When current
+     * index (counter) is equal to end index (border) then we push current 
+     * element into the list and break the loop. Thus, the list that will be
+     * returned will contain all elements from the given list from 'begin index'
+     * to 'end index' inclusively.
+     */
     size_t curr_index = 0;
     Node* curr_node = list->head;
     while (true) {
@@ -919,6 +938,11 @@ bool listContains(List* list, void* value)
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } else {
+        
+        /*  We iterate over the given list and every time check
+         * if the value of current node is equal to the given value.
+         * If it's true then the list contains this value, else not.
+         */
         Node* curr_node = list->head;
         while (curr_node) {
             if (curr_node->data == value) {
@@ -928,95 +952,6 @@ bool listContains(List* list, void* value)
         }
     }
     return false;
-}
-
-/*
-
-Getting the sum of all elements of a given list.
-> Complex time - O(n).
-
- Parameters [in]:
-    -> [list], a list, the sum of which should be found
-
- Parameters [out]:
-    -> [sum], the sum of all elements of a given list
-
-*/
-int listSum(List* list)
-{
-    if (!list->head) {
-        return 0;
-    }
-
-    int sum;
-    Node* curr_node = list->head;
-    while (curr_node) {
-        sum += (double)(int)curr_node->data;
-        curr_node = curr_node->next;
-    }
-    return sum;
-}
-
-/*
-
-Getting an element of a given list with the minimum value.
-> Given list must not be empty.
-> Complex time - O(n).
-
- Parameters [in]:
-    -> [list], a list, the minimum element of which should be found
-
- Parameters [out]:
-    -> [min_el], a minimum element of a given list
-
-*/
-void* listMin(List* list)
-{
-    if (!list->head) {
-        _EMPTY_LIST_ERROR;
-        return NULL;
-    }
-
-    void* min_el = list->head->data;
-    Node* curr_node = list->head->next;
-    while (curr_node) {
-        if (curr_node->data < min_el) {
-            min_el = curr_node->data;
-        }
-        curr_node = curr_node->next;
-    }
-    return min_el;
-}
-
-/*
-
-Getting an element of a given list with the maximum value.
-> Given list must not be empty.
-> Complex time - O(n).
-
- Parameters [in]:
-    -> [list], a list, the maximum element of which should be found
-
- Parameters [out]:
-    -> [min_el], a maximum element of a given list
-    
-*/
-void* listMax(List* list)
-{
-    if (!list->head) {
-        _EMPTY_LIST_ERROR;
-        return NULL;
-    }
-
-    void* max_el = list->head->data;
-    Node* curr_node = list->head->next;
-    while (curr_node) {
-        if (curr_node->data > max_el) {
-            max_el = curr_node->data;
-        }
-        curr_node = curr_node->next;
-    }
-    return max_el;
 }
 
 /*
@@ -1108,6 +1043,12 @@ void listReplaceByIndex(List* list, size_t index, void* value)
     } if (index >= list->size) {
         _INDEX_ERROR(index);
     } else {
+        
+        /*  We start the counter (current index of element) and increment
+         * it every time. When the counter value is equal to a given index,
+         * we change the value of current node to a given value thereby replacing
+         * an old one by a new one.
+         */
         size_t curr_index = 0;
         Node* curr_node = list->head;
         while (true) {
@@ -1143,6 +1084,11 @@ void listReplaceByValue(List* list, void* value_to_repl, void* value_for_repl)
     } if (!listContains(list, value_to_repl)) {
         _VALUE_ERROR(value_to_repl);
     } else {
+        
+        /*  We iterate over the list and compare current node value to a
+         * given value that should be replaced. If current node is equal to
+         * a given value, we replace the value of this node by another given value.
+         */
         Node* curr_node = list->head;
         while (true) {
             if (curr_node->data == value_to_repl) {
@@ -1175,9 +1121,16 @@ void listExtend(List* f_list, List* s_list)
         Node* curr_node = f_list->head;
         Node* s_list_node = s_list->head;
         
+        /*  Iterate over the list until we get to the end in order
+         * to add nodes from the second list to the last node of the first one.
+         */
         while (curr_node->next) {
             curr_node = curr_node->next;
         }
+        
+        /*  Appending nodes from the second list to the first list
+         * thereby extending the first one.
+         */
         while (s_list_node) {
             curr_node->next = s_list_node;
             curr_node = curr_node->next;
@@ -1203,7 +1156,9 @@ void swapLists(List* f_list, List* s_list)
 {
     Node* temp_head = f_list->head;
     size_t temp_size = f_list->size;
-
+    
+    /*  Just swap the head nodes of two lists.
+     */
     f_list->head = s_list->head;
     f_list->size = s_list->size;
 
