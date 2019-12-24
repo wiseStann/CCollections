@@ -27,7 +27,7 @@ typedef struct Stack_type {
 
 
 -> Macroses <-
-
+ -> [_EMPTY_STACK_ERROR], a macros for notification about empty given stack
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
@@ -183,6 +183,7 @@ Remove and return the tail of a given stack.
 void* stackPop(Stack* stack)
 {
     if (!stack->head) {
+        _EMPTY_STACK_ERROR;
         return NULL;
     }
 
