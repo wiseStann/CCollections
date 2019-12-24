@@ -28,6 +28,7 @@ typedef struct Queue_type {
 
 -> Macroses <-
 
+ -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given queue
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
@@ -177,6 +178,7 @@ Remove and return the front of a given queue.
 void* dequeue(Queue* queue)
 {
     if (!queue->front) {
+        _EMPTY_QUEUE_ERROR;
         return NULL;
     }
 
