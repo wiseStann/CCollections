@@ -6,7 +6,7 @@ This software is free and can be used and modifyied by anyone
 under the terms of the GNU Lesser General Public License as
 published by the Free Software Foundation, either version 3
 of the License, or any later version.
-[Development period] -> 13/11/19 - 20/11/19
+[Development period] -> 20/12/19 - 25/12/19
 [Author] -> Stanislav Kerimov
 [Github] -> https://github.com/StarKerrr
 
