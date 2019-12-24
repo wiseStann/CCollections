@@ -1,3 +1,42 @@
+/*
+
+-> Doubly Linked List collection <-
+
+This software is free and can be used and modifyied by anyone
+under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation, either version 3
+of the License, or any later version.
+[Development period] -> 13/11/19 - 20/11/19
+[Author] -> Stanislav Kerimov
+[Github] -> https://github.com/StarKerrr
+
+
+-> Structure <-
+
+typedef struct Node_type {
+    void* data;
+    struct Node_type* next;
+} Node;
+
+typedef struct SLL_type {
+    size_t size;
+    Node* head;
+    Node* tail;
+} List;
+
+
+-> Macroses <-
+
+Check Error macroses in "include/utils/basic.h" header file.
+
+A short description of all:
+ -> [_EMPTY_LIST_ERROR], a macros for notification about empty given list
+ -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
+ -> [_INDEX_ERROR], a macros for notification about wrong given index
+ -> [_VALUE_ERROR], a macros for notification about value, which is not in list
+ 
+*/
+
 #include "../include/dllist.h"
 
 static DList* listNew();
