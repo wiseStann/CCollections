@@ -326,7 +326,7 @@ void arrayRemoveFirst(Array* array, void* value)
     if (index != -1) {
         arrayRemoveAt(array, index);
     } else {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     }
 }
 
@@ -358,7 +358,7 @@ void arrayRemoveLast(Array* array, void* value)
 
         arrayRemoveAt(array, last_index);
     } else {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     }
 }
 
@@ -766,12 +766,12 @@ void arraySwapByValues(Array* array, void* f_value, void* s_value)
 {
     size_t f_index = arrayGetIndex(array, f_value);
     if (f_index == -1) {
-        _VALUE_ERROR(f_value);
+        _VALUE_ERROR;
     }
 
     size_t s_index = arrayGetIndex(array, s_value);
     if (s_index == -1) {
-        _VALUE_ERROR(s_value);
+        _VALUE_ERROR;
     }
 
     arraySwapByIndexes(array, f_index, s_index);
@@ -795,7 +795,7 @@ Replacing an element of array by its index.
 void arrayReplaceByIndex(Array* array, size_t index, void* value)
 {
     if (array->size == 0) {
-        _VALUE_ERROR(value);
+        _VALUE_ERROR;
     } else if (index >= array->size) {
         _INDEX_ERROR(index);
     }
@@ -828,7 +828,7 @@ void arrayReplaceByValue(Array* array, void* value_to_repl, void* value_for_repl
     if (index != -1) {
         array->buff[index] = value_for_repl;
     } else {
-        _VALUE_ERROR(value_to_repl);
+        _VALUE_ERROR;
     }
 }
 
