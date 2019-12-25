@@ -85,7 +85,6 @@ When all files are generated, you should install the public headers, in order to
 ```
 $ sudo make install
 ```
-</br>
 
 ### - Running
 
@@ -109,10 +108,16 @@ int main(int argc, char** argv)
 }
 ```
 
-&nbsp; &nbsp; &nbsp; We want to compile this code and run the binary. We can do it with Static and Dynamic Linking:
+&nbsp; &nbsp; &nbsp; You want to compile this code and run the binary. You can do it with Static and Dynamic Linking:
 
 * Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use: </br>
-(GCC compiler)   ``` $ gcc test.c -static -lCollections -o test ``` </br>
-(CLANG compiler) ``` $ clang test.c -static -lcollectc -o test ```
+(GCC compiler) ```   $ gcc test.c -static -lCollections -o test ``` </br>
+(CLANG compiler) ``` $ clang test.c -static -lcollectc -o test ``` </br>
+
+Now you can easily execute your binary from the current directory:
+```
+./test
+```
 </br>
+
 * Dynamic.
