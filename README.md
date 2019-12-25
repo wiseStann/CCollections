@@ -60,7 +60,7 @@
 ![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
 </br></br></br>
 
-## - How to build and run the library
+## - How to build and run the library (LINUX)
 ### - Building
 
 &nbsp; &nbsp; &nbsp; The most important part of this README is the build and run instructions which you can also find in INSTRUCTIONS.md
