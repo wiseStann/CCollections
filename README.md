@@ -109,9 +109,10 @@ int main(int argc, char** argv)
 }
 ```
 
-And we want to compile this code and run the binary. We can do it with Static and Dynamic Linking:
+&nbsp; &nbsp; &nbsp; We want to compile this code and run the binary. We can do it with Static and Dynamic Linking:
 
 * Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use: </br>
-(GCC compiler) ``` $ gcc test.c -static -lCollections -o test ``` </br>
+(GCC compiler)   ``` $ gcc test.c -static -lCollections -o test ``` </br>
 (CLANG compiler) ``` $ clang test.c -static -lcollectc -o test ```
 </br>
+* Dynamic.
