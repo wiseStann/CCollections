@@ -31,7 +31,7 @@ $ sudo make install
 
 ### - Running
 
-&nbsp; &nbsp; &nbsp; Well, now we have built the project and we want to use the library in our code. Let's assume that we have a file 'test.c':
+Well, now we have built the project and we want to use the library in our code. Let's assume that we have a file 'test.c':
 
 ```c
 #include <stdio.h>
