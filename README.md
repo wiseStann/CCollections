@@ -55,7 +55,7 @@
 
 ## - How to build and run the library
 
-&nbsp; &nbsp; &nbsp; &nbsp; The most important part of this README is the build and run instructions.
+&nbsp; &nbsp; The most important part of this README is the build and run instructions which you can also find in INSTRUCTIONS.md
 </br>
 First of all, you need to clone this repository on your local PC:
 </br>
@@ -64,7 +64,6 @@ First of all, you need to clone this repository on your local PC:
 git clone https://github.com/StarKerrr/CCollections.git
 ```
 
-</br>
 When you clone this repository on your local machine, change your current directory to this Project folder:
 </br>
 
