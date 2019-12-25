@@ -108,16 +108,22 @@ int main(int argc, char** argv)
 }
 ```
 
-&nbsp; &nbsp; &nbsp; You want to compile this code and run the binary. You can do it with Static and Dynamic Linking:
+You want to compile this code and run the binary. You can do it with Static and Dynamic Linking:
 
 * Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use: </br>
-(GCC compiler) ```   $ gcc test.c -static -lCollections -o test ``` </br>
-(CLANG compiler) ``` $ clang test.c -static -lCollections -o test ``` </br>
+(GCC compiler)
+```
+$ gcc test.c -static -lCollections -o test
+``` 
+(CLANG compiler)
+```
+$ clang test.c -static -lCollections -o test
+```
+
+* Dynamic.
 
 Now you can easily execute your binary from the current directory:
 ```
 ./test
 ```
-</br>
-
-* Dynamic.
+And your console should show your `3`
