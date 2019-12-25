@@ -2,8 +2,6 @@
   <img src="https://github.com/StarKerrr/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="600px">
 </p>
 
-[![Data Structures/Collections](https://en.wikipedia.org/wiki/Data_structure)
-
 ## - About this project
 &nbsp; &nbsp; &nbsp; &nbsp; I am a big fan of C, that's why I want to make work with this language more comfortable and easier. So I've decided to write a library of generic data structures. Working on this project, I had a great experience in C programming and data structures. As we know, C doesn't have special collections like linked lists or stacks and this is rather terrible because embedded arrays often can't satisfy all our needs. First of all, they have a fixed size, i.e. they can't be dynamically expanded. Secondly, we can put the data only of the same type into array that also isn't convenient. So, I present to you the library of generic data structures! But first thing's first.
 </br>
