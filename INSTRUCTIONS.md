@@ -10,7 +10,7 @@ When you clone this repository on your local machine, change your current direct
 ```
 $ cd CCollections
 ```
-To build a pipeline Cmake needs to know where is the source folder and where is binary folder. The source folder is where your CMakeLists.txt is located. Binary folder you have to create and usually it is named 'build'. Using an empty "build" directory is a technique called "out-of-source build", in which all your generated files are generated in the separate "build" directory and not mixed with source files. So, make a 'build' folder and go into it:
+To build a pipeline Cmake needs to know where is the source folder and where is binary folder. The source folder is where your CMakeLists.txt is located. Binary folder you have to create manually and usually it is named 'build'. Using an empty "build" directory is a technique called "out-of-source build", in which all your generated files are generated in the separate "build" directory and not mixed with source files. So, make a 'build' folder and go into it:
 ```
 $ mkdir build
 $ cd build
