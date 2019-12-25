@@ -31,7 +31,7 @@ $ sudo make install
 
 ### - Running
 
-Well, now we have built the project and we want to use the library in our code. Let's assume that we have a file 'test.c':
+Well, now you have built the project and you want to use the library in our code. Let's assume that you have a file 'test.c':
 
 ```c
 #include <stdio.h>
@@ -70,7 +70,7 @@ $ clang test.c -static -lCollections -o test
 ```
 $ gcc test.c -lCollections -o test
 ```
-(CLANG)
+(CLANG compiler)
 ```
 $ clang test.c -lCollections -o test
 ```
