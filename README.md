@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 
 * Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use: </br>
 (GCC compiler) ```   $ gcc test.c -static -lCollections -o test ``` </br>
-(CLANG compiler) ``` $ clang test.c -static -lcollectc -o test ``` </br>
+(CLANG compiler) ``` $ clang test.c -static -lCollections -o test ``` </br>
 
 Now you can easily execute your binary from the current directory:
 ```
