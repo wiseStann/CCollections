@@ -10,7 +10,7 @@
 - [What is a Data Structure](#--about-this-project)
 - [Why learn data structure](#--what-is-a-data-structure)
 - [Popular data structures and library implementations](#--about-popular-data-structures)
-- [Build and Run](#--how-to-build-and-run-the-library)
+- [Build and Run](#--how-to-build-and-run-the-library-linux)
 
 ## - What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
@@ -128,8 +128,17 @@ $ gcc test.c -static -lCollections -o test
 $ clang test.c -static -lCollections -o test
 ```
 
-* Dynamic.
+* Dynamic. To link your code dynamically, you can just remove -static flag from your command. You just have to tell compiler what the library should be used addind -l flag: </br>
 
+(GCC compiler)
+```
+$ gcc test.c -lCollections -o test
+```
+(CLANG)
+```
+$ clang test.c -lCollections -o test
+```
+</br>
 Now you can easily execute your binary from the current directory:
 ```
 ./test
