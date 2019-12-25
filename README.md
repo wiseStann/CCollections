@@ -54,8 +54,9 @@
 </br></br></br>
 
 ## - How to build and run the library
+### - Building
 
-&nbsp; &nbsp; The most important part of this README is the build and run instructions which you can also find in INSTRUCTIONS.md
+&nbsp; &nbsp; &nbsp; The most important part of this README is the build and run instructions which you can also find in INSTRUCTIONS.md
 </br>
 First of all, you need to clone this repository on your local PC:
 </br>
@@ -84,3 +85,33 @@ When all files are generated, you should install the public headers, in order to
 ```
 $ sudo make install
 ```
+
+</br>
+### - Running
+
+&nbsp; &nbsp; &nbsp; Well, now we have built the project and we want to use the library in our code. Let's assume that we have a file 'test.c':
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <Collections/array.h>
+
+int main(int argc, char** argv)
+{
+    Array* arr = arrayNew();
+    arrayToEnd(arr, (void*)10);
+    arrayToEnd(arr, (void*)20);
+    arrayToEnd(arr, "Something");
+    
+    if (arrayLength(arr) > 0) {
+        printf("Array length is %ld\n", arrayLength(arr));
+    }
+}
+```
+
+And we want to compile this code and run the binary. We can do it with Static and Dynamic Linking:
+
+* Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use:
+(GCC compiler) ``` $ gcc test.c -static -lCollections -o test ```
+(CLANG compiler) ``` $ clang test.c -static -lcollectc -o test ```
+</br>
