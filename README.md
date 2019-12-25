@@ -117,7 +117,7 @@ int main(int argc, char** argv)
 
 You want to compile this code and run the binary. You can do it with Static and Dynamic Linking:
 
-* Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib he should use: </br>
+* Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib should be used: </br>
 
 (GCC compiler)
 ```
