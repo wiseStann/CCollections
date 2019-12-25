@@ -27,3 +27,55 @@ When all files are generated, you should install the public headers, in order to
 ```
 $ sudo make install
 ```
+
+### - Running
+
+&nbsp; &nbsp; &nbsp; Well, now we have built the project and we want to use the library in our code. Let's assume that we have a file 'test.c':
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <Collections/array.h>
+
+int main(int argc, char** argv)
+{
+    Array* arr = arrayNew();
+    arrayToEnd(arr, (void*)10);
+    arrayToEnd(arr, (void*)20);
+    arrayToEnd(arr, "Something");
+    arrayReverseMut(arr);
+    
+    void* end = arrayGetEnd(arr);
+    printf("The end of array = %d\n", toInteger(end));
+}
+```
+
+You want to compile this code and run the binary. You can do it with Static and Dynamic Linking:
+
+* Static. To link your code statically, you have to add flag -static to the command and directly tell compiler what the lib should be used: </br>
+
+(GCC compiler)
+```
+$ gcc test.c -static -lCollections -o test
+``` 
+(CLANG compiler)
+```
+$ clang test.c -static -lCollections -o test
+```
+
+* Dynamic. To link your code dynamically, you can just remove -static flag from your command. You just have to tell compiler what the library should be used addind -l flag: </br>
+
+(GCC compiler)
+```
+$ gcc test.c -lCollections -o test
+```
+(CLANG)
+```
+$ clang test.c -lCollections -o test
+```
+</br>
+Now you can easily execute your binary from the current directory:
+```
+./test
+```
+And your console should show you `The end of array = 10`
