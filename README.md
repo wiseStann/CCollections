@@ -108,10 +108,10 @@ int main(int argc, char** argv)
     arrayToEnd(arr, (void*)10);
     arrayToEnd(arr, (void*)20);
     arrayToEnd(arr, "Something");
+    arrayReverseMut(arr);
     
-    if (arrayLength(arr) > 0) {
-        printf("Array length is %ld\n", arrayLength(arr));
-    }
+    void* end = arrayGetEnd(arr);
+    printf("The end of array = %d\n", toInteger(end));
 }
 ```
 
