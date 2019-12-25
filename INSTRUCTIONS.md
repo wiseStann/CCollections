@@ -1,6 +1,5 @@
 ## Build and Run
 
-&nbsp; &nbsp; The most important part of this README is the build and run instructions which you can also find in INSTRUCTIONS.md
 </br>
 First of all, you need to clone this repository on your local PC:
 </br>
