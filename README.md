@@ -101,17 +101,18 @@ $ sudo make install
 #include <stdio.h>
 #include <stdlib.h>
 #include <Collections/array.h>
+#include <Collections/array_sortings.h>
 
 int main(int argc, char** argv)
 {
     Array* arr = arrayNew();
-    arrayToEnd(arr, (void*)10);
+    arrayToEnd(arr, (void*)30);
     arrayToEnd(arr, (void*)20);
-    arrayToEnd(arr, "Something");
-    arrayReverseMut(arr);
+    arrayToEnd(arr, (void*)10);
+    Array* sorted_array = arraySortNew(arr, bubbleSort);
     
-    void* end = arrayGetEnd(arr);
-    printf("The end of array = %d\n", toInteger(end));
+    void* begin = arrayGetBegin(arr);
+    printf("First element of array: %d", toInteger(begin));
 }
 ```
 
@@ -139,6 +140,7 @@ $ gcc test.c -lCollections -o test
 $ clang test.c -lCollections -o test
 ```
 </br>
+
 Now you can easily execute your binary from the current directory:
 ```
 ./test
