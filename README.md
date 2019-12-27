@@ -111,7 +111,7 @@ int main(int argc, char** argv)
     arrayToEnd(arr, (void*)10);
     Array* sorted_array = arraySortNew(arr, bubbleSort);
     
-    void* begin = arrayGetBegin(arr);
+    void* begin = arrayGetBegin(sorted_array);
     printf("First element of array: %d", toInteger(begin));
 }
 ```
