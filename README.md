@@ -145,4 +145,4 @@ Now you can easily execute your binary from the current directory:
 ```
 ./test
 ```
-And your console should show you `The end of array = 10`
+And your console should show you `First element of array = 10`
