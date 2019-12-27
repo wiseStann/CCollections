@@ -50,14 +50,14 @@
 
 </br>
 
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/StackUsage.png" width="650px">
+<img src="https://github.com/StarKerrr/CCollections/blob/master/res/StackImg.png" width="650px">
 &nbsp; &nbsp; &nbsp; &nbsp; A stack is a basic data structure that can be logically thought of as a linear structure represented by a real physical stack or pile, a structure where insertion and deletion of items takes place at one end called top of the stack. The basic concept can be illustrated by thinking of your data set as a stack of books or cards where you can only take the top item off the stack in order not to destroy all the stack of things. The basic implementation of a stack is also called a LIFO (Last In First Out) to demonstrate the way it accesses data.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; In my library you can find two implementations of Stack, viz. dynamic array-based and singly linked list-based. Well, that's how you can use Stack in your code.
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/StackNew.png)
+![](https://github.com/StarKerrr/CCollections/blob/master/res/StackUsage.png)
 </br></br></br>
 
 ## - How to build and run the library (LINUX)
