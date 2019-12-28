@@ -1,6 +1,6 @@
 /* Insides of Double-end Queue data structure with base DA */
 
-#include "utils/basic.h"
+#include "basic.h"
 
 #ifndef _DOUBLE_END_Q_H_
 #define _DOUBLE_END_Q_H_
@@ -21,10 +21,10 @@ typedef struct Deque_type {
 
 
 // New deque creation
-static Deque* dequeNew();
+ Deque* dequeNew();
 
 // New deque creation using a given array
-static Deque* dequeFromArr(int* array, int size);
+ Deque* dequeFromArr(int* array, int size);
 
 // Appending an element to the end of deque
 void dequeAdd(Deque* deque, void* item);
@@ -63,10 +63,10 @@ void dequeExpandCapacity(Deque* deque);
 void dequeCutCapacity(Deque* deque);
 
 // Deleting a given deque
-static void dequeClear(Deque* deque);
+ void dequeClear(Deque* deque);
 
 // Clearing a given deque
-static void dequeDelete(Deque* deque);
+ void dequeDelete(Deque* deque);
 
 
 #endif // _DOUBLE_END_Q_H_

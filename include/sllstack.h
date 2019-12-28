@@ -1,6 +1,6 @@
 /* Insides of Stack data structure with base Singly Linked List */
 
-#include "utils/basic.h"
+#include "basic.h"
 
 #ifndef SLL_STACK_H
 #define SLL_STACK_H
@@ -22,10 +22,13 @@ typedef struct Stack_type {
 
 
 // New stack creation
-static Stack* stackNew();
+Stack* stackNew();
 
 // New stack creation using a given array
-static Stack* stackFromArr(int* array, int size);
+Stack* stackFromArr(void** array, int size);
+
+// New node creation
+Node* snodeNew(void* value);
 
 // Appending an element to the end of stack
 void stackPush(Stack* stack, void* value);
@@ -58,10 +61,10 @@ void stackExpandCapacity(Stack* stack);
 void stackCutCapacity(Stack* stack);
 
 // Deleting a given stack
-static void stackClear(Stack* stack);
+ void stackClear(Stack* stack);
 
 // Clearing a given stack
-static void stackDelete(Stack* stack);
+ void stackDelete(Stack* stack);
 
 
 #endif // SLL_STACK_H

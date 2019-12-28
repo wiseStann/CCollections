@@ -1,7 +1,6 @@
 /* Insides of Singly Linked List data structure */
 
-#include "utils/basic.h"
-#include "utils/list_sortings.h"
+#include "basic.h"
 
 #ifndef SINGLY_LINKED_LIST_H
 #define SINGLY_LINKED_LIST_H
@@ -23,10 +22,13 @@ typedef struct SLL_type {
 
 
 // New list creation
-static List* listNew();
+List* listNew();
 
 // New node creation
-static Node* nodeNew(void* value);
+Node* nodeNew(void* value);
+
+// Creating a new list from a given array
+List* listFromArr(void** array, int size);
 
 // Appending an element to the end of the list
 void listPush(List* list, void* value);
@@ -83,7 +85,10 @@ List* listSublist(List* list, size_t begin_index, size_t end_index);
 bool listContains(List* list, void* value);
 
 // Making a shallow copy of a given list
-List* listCopy(List* list);
+List* listShallCopy(List* list);
+
+// Making a deep copy of a given list
+List* listDeepCopy(List* list);
 
 // Reversing an list in-place 
 void listReverseMut(List* list);
@@ -116,10 +121,10 @@ void listSortMut(List* list, List*(*func)(List*));
 List* listSortNew(List* list, List*(*func)(List*));
 
 // Clear list
-static void listClear(List* list);
+void listClear(List* list);
 
 // Remove list
-static void listDelete(List* list);
+void listDelete(List* list);
 
 
 #endif // SINGLY_LINKED_LIST_H

@@ -1,6 +1,6 @@
 /* Insides of Queue data structure with base DA */
 
-#include "utils/basic.h"
+#include "basic.h"
 
 #ifndef DA_QUEUE_H
 #define DA_QUEUE_H
@@ -21,46 +21,46 @@ typedef struct Queue_type {
 
 
 // New queue creation
-static Queue* queueNew();
+Queue* daQueueNew();
 
 // New queue creation using a given array
-static Queue* queueFromArr(int* array, int size);
+Queue* daQueueFromArr(void** array, int size);
 
 // Appending an element to the end of queue
-void enqueue(Queue* queue, void* item);
+void daEnqueue(Queue* queue, void* item);
 
 // Remove and return first element of queue
-void* dequeue(Queue* queue);
+void* daDequeue(Queue* queue);
 
 // Getting the first element of queue
-void* queueFront(Queue* queue);
+void* daQueueFront(Queue* queue);
 
 // Getting the last element of queue
-void* queueRear(Queue* queue);
+void* daQueueRear(Queue* queue);
 
 // Getting the size of queue
-size_t queueSize(Queue* queue);
+size_t daQueueSize(Queue* queue);
 
 // Checking if queue is empty or not
-bool queueIsEmpty(Queue* queue);
+bool daQueueIsEmpty(Queue* queue);
 
 // Checking if queue is full or not
-bool queueIsFull(Queue* queue);
+bool daQueueIsFull(Queue* queue);
 
 // Checking if the size of queue is less than the MAXSIZE or not
-bool queueSizeIsValid(Queue* queue);
+bool daQueueSizeIsValid(Queue* queue);
 
 // Expanding capacity of a given queue
-void queueExpandCapacity(Queue* queue);
+void daQueueExpandCapacity(Queue* queue);
 
 // Cutting capacity of a given queue
-void queueCutCapacity(Queue* queue);
+void daQueueCutCapacity(Queue* queue);
 
 // Deleting a given queue
-static void queueClear(Queue* queue);
+ void daQueueClear(Queue* queue);
 
 // Clearing a given queue
-static void queueDelete(Queue* queue);
+ void daQueueDelete(Queue* queue);
 
 
 #endif // DA_QUEUE_H

@@ -1,6 +1,6 @@
 /* Insides of Stack data structure with base Dynamic Array */
 
-#include "utils/basic.h"
+#include "basic.h"
 
 #ifndef DA_STACK_H
 #define DA_STACK_H
@@ -21,46 +21,46 @@ typedef struct Stack_type {
 
 
 // New stack creation
-static Stack* stackNew();
+ Stack* daStackNew();
 
 // New stack creation using a given array
-static Stack* stackFromArr(int* array, int size);
+ Stack* daStackFromArr(void** array, int size);
 
 // Appending an element to the end of stack
-void stackPush(Stack* stack, void* item);
+void daStackPush(Stack* stack, void* item);
 
 // Remove and return first element of stack
-void* stackPop(Stack* stack);
+void* daStackPop(Stack* stack);
 
 // Getting the first element of stack
-void* stackTop(Stack* stack);
+void* daStackTop(Stack* stack);
 
 // Getting the last element of stack
-void* stackTail(Stack* stack);
+void* daStackTail(Stack* stack);
 
 // Getting the size of stack
-size_t stackSize(Stack* stack);
+size_t daStackSize(Stack* stack);
 
 // Checking if stack is empty or not
-bool stackIsEmpty(Stack* stack);
+bool daStackIsEmpty(Stack* stack);
 
 // Checking if stack is full or not
-bool stackIsFull(Stack* stack);
+bool daStackIsFull(Stack* stack);
 
 // Checks if the size of a given stack is less than the MAXSIZE or not
-bool stackSizeIsValid(Stack* stack);
+bool daStackSizeIsValid(Stack* stack);
 
 // Expanding capacity of stack
-void stackExpandCapacity(Stack* stack);
+void daStackExpandCapacity(Stack* stack);
 
 // Cutting capacity of stack
-void stackCutCapacity(Stack* stack);
+void daStackCutCapacity(Stack* stack);
 
 // Deleting a given stack
-static void stackClear(Stack* stack);
+ void daStackClear(Stack* stack);
 
 // Clearing a given stack
-static void stackDelete(Stack* stack);
+ void daStackDelete(Stack* stack);
 
 
 #endif // DA_STACK_H

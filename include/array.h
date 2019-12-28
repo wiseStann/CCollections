@@ -1,7 +1,6 @@
 /* Insides of Dynamic Array data structure */
 
-#include "utils/basic.h"
-#include "utils/array_sortings.h"
+#include "basic.h"
 
 #ifndef DYNAMIC_ARRAY_H
 #define DYNAMIC_ARRAY_H
@@ -12,6 +11,9 @@
 // Denote maximum capacity for the queue just for controlling size of allocated memory
 #define MAXSIZE INT_MAX
 
+#define arrayCapacity(x) (x->capacity)
+#define arraySize(x) (x->size)
+#define arrayIterSize(x) (x->arr->size)
 
 // Array data structure
 typedef struct Array_type {
@@ -34,13 +36,16 @@ typedef struct Config_type {
 
 
 // New array creation
-static Array* arrayNew();
+Array* arrayNew();
  
 // New configurations for creating custom array
-static Config* const configsNew(size_t cap, double exp_val);
+Config* const configsNew(size_t cap, double exp_val);
 
 // Custom initialization of array
-static Array* arrayCustomNew(Config* const configuration);
+Array* arrayCustomNew(Config* const configuration);
+
+// Creating an array from a given array
+Array* arrayFromIntArr(int* array, int size);
 
 // Appending an element to the end of the array
 void arrayToEnd(Array* array, void* value);
@@ -133,17 +138,16 @@ void arraySortMut(Array* array, void**(*func)(void**, int));
 Array* arraySortNew(Array* array, void**(*func)(void**, int));
 
 // Expanding the capacity of the given array
-static void arrayExpandCapacity(Array* array);
+void arrayExpandCapacity(Array* array);
 
 // Cutting the capacity of the array
-static void arrayCutCapacity(Array* array);
+void arrayCutCapacity(Array* array);
 
 // Clear array
-static void arrayClear(Array* array);
+void arrayClear(Array* array);
 
 // Freeing up memory that was allocated for the array
-static void arrayFree(Array* array);
-
+void arrayFree(Array* array);
 
 //////////////////////////////////////
 
@@ -161,7 +165,7 @@ typedef struct ArrayIter_type {
 } ArrayIterator;
 
 // Just something like Python's iter()
-static ArrayIterator* arrayIterNew(Array* array);
+ArrayIterator* arrayIterNew(Array* array);
 
 // Check if a given array has next element
 bool arrayIterHasNext(ArrayIterator* iterator);

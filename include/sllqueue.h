@@ -1,6 +1,6 @@
 /* Insides of Queue data srtucture with base SSL */
 
-#include "utils/basic.h"
+#include "basic.h"
 
 #ifndef SSL_QUEUE_H
 #define SSL_QUEUE_H
@@ -22,13 +22,13 @@ typedef struct Queue_type {
 
 
 // New queue creation
-static Queue* queueNew();
+ Queue* queueNew();
 
 // New queue creation using a given array
-static Queue* queueFromArr(int* array, int size);
+ Queue* queueFromArr(void** array, int size);
 
 // New node creation
-static Node* nodeNew(void* value);
+ Node* qnodeNew(void* value);
 
 // Appending an element to the end of queue
 void enqueue(Queue* queue, void* item);
@@ -55,10 +55,10 @@ bool queueIsFull(Queue* queue);
 bool queueSizeIsValid(Queue* queue);
 
 // Clearing a given queue
-static void queueClear(Queue* queue);
+ void queueClear(Queue* queue);
 
 // Deleting a given queue
-static void queueDelete(Queue* queue);
+ void queueDelete(Queue* queue);
 
 
 #endif // SSL_QUEUE_H
