@@ -28,7 +28,7 @@ typedef struct SLL_type {
 
 -> Macroses <-
 
-Check Error macroses in "include/utils/basic.h" header file.
+Check Error macroses in "include/basic.h" header file.
 
 A short description of all:
  -> [_EMPTY_LIST_ERROR], a macros for notification about empty given list
@@ -39,47 +39,6 @@ A short description of all:
 */
 
 #include "../include/sllist.h"
-
-#define listSize(x) (x->size)
-
-static List* listNew();
-static Node* nodeNew(void* value);
-static void listClear(List* list);
-static void listDelete(List* list);
-
-void listPush(List* list, void* value);
-void listPrepend(List* list, void* value);
-void listInsert(List* list, size_t index, void* value);
-void listRemoveEnd(List* list);
-void listRemoveBegin(List* list);
-void listRemoveAt(List* list, size_t index);
-void listRemoveLast(List* list, void* value);
-void listRemoveFirst(List* list, void* value);
-void listRemoveAll(List* list, void* value);
-void listReverseMut(List* list);
-List* listReverseNew(List* list);
-size_t listGetIndex(List* list, void* value);
-void* listGetAt(List* list, size_t index);
-void* listGetBegin(List* list);
-void* listGetEnd(List* list);
-void* listPop(List* list);
-void* listPoll(List* list);
-List* listShallCopy(List* list);
-List* listDeepCopy(List* list);
-size_t listCount(List* list, void* value);
-List* listSublist(List* list, size_t begin_index, size_t end_index);
-bool listContains(List* list, void* value);
-int listSum(List* list);
-void* listMin(List* list);
-void* listMax(List* list);
-void listSwapByIndexes(List* list, size_t f_index, size_t s_index);
-void listSwapValues(List* list, void* f_value, void* s_value);
-void listReplaceByIndex(List* list, size_t index, void* value);
-void listReplaceByValue(List* list, void* value_to_repl, void* value_for_repl);
-void listExtend(List* f_list, List* s_list);
-void swapLists(List* f_list, List* s_list);
-void listSortMut(List* list, List*(*func)(List*));
-List* listSortNew(List* list, List*(*func)(List*));
 
 /*
 
@@ -93,7 +52,7 @@ New list creation.
     -> [list], a new created list
 
 */
-static List* listNew()
+List* listNew()
 {
     List* list = (List*)malloc(sizeof(List));
     if (!list) {
@@ -119,7 +78,7 @@ New node creation.
     -> [node], a new created node
 
 */
-static Node* nodeNew(void* value)
+Node* nodeNew(void* value)
 {
     Node* node = (Node*)malloc(sizeof(Node));
     if (!node) {
@@ -1124,8 +1083,9 @@ Extending a given list by another one.
 void listExtend(List* f_list, List* s_list)
 {
     if (!f_list->head) {
-        f_list->head = s_list->head;
-        f_list->size = s_list->size;
+        List* temp = listShallCopy(s_list);
+        f_list->head = temp->head;
+        f_list->size = temp->size;
     } else {
         /*  Appending nodes from the second list to the first list
          * thereby extending the first one.
@@ -1229,7 +1189,7 @@ Clearing a given list without deleting allocated memory, shallow clearing.
  Parameters [out]:
     -> NULL
 */
-static void listClear(List* list)
+void listClear(List* list)
 {
     if (!list->head) {
         panic("%s:%d: cannot clear empty list", __FILE__, __LINE__);
@@ -1256,7 +1216,7 @@ Clearing a given list with deleting allocated memory, actually remove.
  Parameters [out]:
     -> NULL
 */
-static void listDelete(List* list)
+void listDelete(List* list)
 {
     if (!list->head) {
         panic("%s:%d: cannot remove empty list", __FILE__, __LINE__);

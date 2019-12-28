@@ -27,29 +27,14 @@ typedef struct Stack_type {
 
 
 -> Macroses <-
+
+ Check Error macroses in "include/basic.h" header file.
  -> [_EMPTY_STACK_ERROR], a macros for notification about empty given stack
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
 
 #include "../include/sllstack.h"
-
-
-static Stack* stackNew();
-static Stack* stackFromArr(int* array, int size);
-static Node* nodeNew(void* value);
-static void stackClear(Stack* stack);
-static void stackDelete(Stack* stack);
-
-void stackPush(Stack* stack, void* item);
-void* stackPop(Stack* stack);
-void* stackTop(Stack* stack);
-void* stackTail(Stack* stack);
-size_t stackSize(Stack* stack);
-bool stackIsEmpty(Stack* stack);
-bool stackIsFull(Stack* stack);
-bool stackSizeIsValid(Stack* stack);
-void print(Stack* stack, bool show_size);
 
 /*
    Features which will be added soon:
@@ -73,7 +58,7 @@ New stack creation.
     -> [stack], a new created stack
 
 */
-static Stack* stackNew()
+ Stack* stackNew()
 {
     Stack* stack = (Stack*)malloc(sizeof(Stack));
     if (!stack) {
@@ -100,7 +85,7 @@ Making a stack from a given array.
     -> [stack], the stack, which should be made with the given array
 
 */
-static Stack* stackFromArr(int* array, int size)
+ Stack* stackFromArr(void** array, int size)
 {
     Stack* stack = stackNew();
 
@@ -122,7 +107,7 @@ New node creation.
     -> [node], a new created node
 
 */
-static Node* nodeNew(void* value)
+ Node* snodeNew(void* value)
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
     if (!new_node) {
@@ -150,7 +135,7 @@ Appending new element to the end of a given stack.
 void stackPush(Stack* stack, void* value)
 {
     if (!stack->head) {
-        stack->head = nodeNew(value);
+        stack->head = snodeNew(value);
         stack->tail = stack->head;
     } else if (stack->size >= MAXSIZE) {
         panic("%s:%d: max size of elements is reached", __FILE__, __LINE__);
@@ -161,7 +146,7 @@ void stackPush(Stack* stack, void* value)
             curr_node = curr_node->next;
         }
 
-        curr_node->next = nodeNew(value);
+        curr_node->next = snodeNew(value);
         stack->tail = curr_node->next;
     }
     stack->size++;
@@ -332,7 +317,7 @@ Clearing a given stack without deleting allocated memory.
  Parameters [out]:
     -> NULL
 */
-static void stackClear(Stack* stack)
+ void stackClear(Stack* stack)
 {
     if (!stack->head) {
         panic("%s:%d: cannot clear empty stack", __FILE__, __LINE__);
@@ -357,7 +342,7 @@ Clearing all memory that was allocated for the stack.
  Parameters [out]:
     -> NULL
 */
-static void stackDelete(Stack* stack)
+ void stackDelete(Stack* stack)
 {
     if (!stack->head) {
         panic("%s:%d: cannot remove empty stack", __FILE__, __LINE__);

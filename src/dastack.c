@@ -24,30 +24,13 @@ typedef struct Stack_type {
 
 -> Macroses <-
 
+ Check Error macroses in "include/basic.h" header file.
  -> [_EMPTY_STACK_ERROR], a macros for notification about empty given stack
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
 
 #include "../include/dastack.h"
-
-
-static Stack* stackNew();
-static Stack* stackFromArr(int* array, int size);
-
-void stackPush(Stack* stack, void* item);
-void* stackPop(Stack* stack);
-void* stackTop(Stack* stack);
-void* stackTail(Stack* stack);
-size_t stackSize(Stack* stack);
-bool stackIsEmpty(Stack* stack);
-bool stackIsFull(Stack* stack);
-bool stackSizeIsValid(Stack* stack);
-void stackExpandCapacity(Stack* stack);
-void stackCutCapacity(Stack* stack);
-static void stackClear(Stack* stack);
-static void stackDelete(Stack* stack);
-void print(Stack* stack, bool show_size, bool show_cap);
 
 /*
    Features which will be added soon:
@@ -74,7 +57,7 @@ start values *
     -> [stack], a new created stack
 
 */
-static Stack* stackNew()
+ Stack* daStackNew()
 {
     Stack* new_stack = (Stack*)malloc(sizeof(Stack));
     if (!new_stack) {
@@ -103,12 +86,12 @@ Making a stack using a given array.
     -> [stack], a made stack using a given array
 
 */
-static Stack* stackFromArr(int* array, int size)
+ Stack* daStackFromArr(void** array, int size)
 {
-    Stack* stack = stackNew();
+    Stack* stack = daStackNew();
     
     for (int i = 0; i < size; i++) {
-        stackPush(stack, (void*)(size_t)array[i]);
+        daStackPush(stack, (void*)(size_t)array[i]);
     }
     return stack;
 }
@@ -125,10 +108,10 @@ Appending an element to a given stack.
  Parameters [out]:
     -> NULL
 */
-void stackPush(Stack* stack, void* item)
+void daStackPush(Stack* stack, void* item)
 {
     if (stack->size >= stack->capacity) {
-        stackExpandCapacity(stack);
+        daStackExpandCapacity(stack);
     }
 
     stack->buff[stack->size++] = item;
@@ -147,7 +130,7 @@ Remove and getting last element of a given stack.
     -> [tail], the last element of a given stack
 
 */
-void* stackPop(Stack* stack)
+void* daStackPop(Stack* stack)
 {
     if (stack->size == 0) {
         _EMPTY_STACK_ERROR;
@@ -171,7 +154,7 @@ Getting the top of a given stack.
     -> [top], the first element of a given stack
 
 */
-void* stackTop(Stack* stack)
+void* datackTop(Stack* stack)
 {
     if (stack->size == 0) {
         return NULL;
@@ -194,7 +177,7 @@ Getting the tail of a given stack.
     -> [tail], the last element of a given stack
 
 */
-void* stackTail(Stack* stack)
+void* daStackTail(Stack* stack)
 {
     if (stack->size == 0) {
         return NULL;
@@ -216,7 +199,7 @@ Getting the size of a given stack.
     -> [size], the size of a given stack
 
 */
-size_t stackSize(Stack* stack)
+size_t datackSize(Stack* stack)
 {
     return stack->size;
 }
@@ -233,7 +216,7 @@ Checking if a given stack is empty or not.
     -> [bool], the boolean result of checking if a given stack is empty or not
 
 */
-bool stackIsEmpty(Stack* stack)
+bool daStackIsEmpty(Stack* stack)
 {
     if (stack->size == 0)
         return true;
@@ -252,7 +235,7 @@ Checking if a given stack is full or not.
     -> [bool], the boolean result of checking if a given stack is full or not
 
 */
-bool stackIsFull(Stack* stack)
+bool daStackIsFull(Stack* stack)
 {
     if (stack->size >= MAXSIZE)
         return true;
@@ -271,7 +254,7 @@ Checking if the size of a given stack is valid or not.
     -> [bool], the boolean result of checking if the size of a given stack is valid or not
 
 */
-bool stackSizeIsValid(Stack* stack)
+bool daStackSizeIsValid(Stack* stack)
 {
     if (stack->size < MAXSIZE)
         return true;
@@ -294,7 +277,7 @@ memory, but just to expand it when it is necessary *
  Parameters [out]:
     -> NULL
 */
-void stackExpandCapacity(Stack* stack)
+void daStackExpandCapacity(Stack* stack)
 {
     if (stack->capacity >= MAXSIZE) {
         panic("'%s':%d: max capacity size exceeded", __FUNCTION__, __LINE__);
@@ -321,7 +304,7 @@ equals to the number of its elements (size) *
  Parameters [out]:
     -> NULL
 */
-void stackCutCapacity(Stack* stack)
+void daStackCutCapacity(Stack* stack)
 {
     if (stack->size == 0) {
         stack->capacity = STANDARD_CAPACITY;
@@ -341,7 +324,7 @@ Clearing a given stack without deleting allocated memory.
  Parameters [out]:
     -> NULL
 */
-static void stackClear(Stack* stack)
+ void daStackClear(Stack* stack)
 {
     stack->size = 0;
     stack->capacity = STANDARD_CAPACITY;
@@ -359,7 +342,7 @@ Clearing all memory that was allocated for the stack.
  Parameters [out]:
     -> NULL
 */
-static void stackDelete(Stack* stack)
+ void daStackDelete(Stack* stack)
 {
     free(stack->buff);
     free(stack);

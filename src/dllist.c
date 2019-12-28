@@ -27,7 +27,7 @@ typedef struct SLL_type {
 
 -> Macroses <-
 
-Check Error macroses in "include/utils/basic.h" header file.
+Check Error macroses in "include/basic.h" header file.
 
 A short description of all:
  -> [_EMPTY_LIST_ERROR], a macros for notification about empty given list
@@ -38,41 +38,6 @@ A short description of all:
 */
 
 #include "../include/dllist.h"
-
-static DList* listNew();
-static Node* nodeNew(void* value);
-static void listClear(DList* list);
-static void listDelete(DList* list);
-
-void listPush(DList* list, void* value);
-void listPrepend(DList* list, void* value);
-void listInsert(DList* list, void* value, size_t index);
-void listRemoveEnd(DList* list);
-void listRemoveBegin(DList* list);
-void listRemoveAt(DList* list, size_t index);
-void listRemoveLast(DList* list, void* value);
-void listRemoveFirst(DList* list, void* value);
-void listRemoveAll(DList* list, void* value);
-DList* listReverseNew(DList* list);
-size_t listGetIndex(DList* list, void* value);
-void* listGetAt(DList* list, size_t index);
-void* listGetBegin(DList* list);
-void* listGetEnd(DList* list);
-void* listPop(DList* list);
-void* listPoll(DList* list);
-DList* listShallCopy(DList* list);
-DList* listDeepCopy(DList* list);
-size_t listCount(DList* list, void* value);
-DList* listSublist(DList* list, size_t begin_index, size_t end_index);
-bool listContains(DList* list, void* value);
-void listSwapByIndexes(DList* list, size_t f_index, size_t s_index);
-void listSwapValues(DList* list, void* f_value, void* s_value);
-void listReplaceByIndex(DList* list, size_t index, void* value);
-void listReplaceByValue(DList* list, void* value_to_repl, void* value_for_repl);
-void listExtend(DList* f_list, DList* s_list);
-void swapLists(DList* f_list, DList* s_list);
-void listSortMut(DList* list, DList*(*func)(DList*));
-DList* listSortNew(DList* list, DList*(*func)(DList*));
 
 /*
     Features which will be added/fixed soon:
@@ -94,7 +59,7 @@ New list creation.
     -> [list], a new created list
 
 */
-static DList* listNew()
+DList* dlistNew()
 {
     DList* new_list = (DList*)malloc(sizeof(DList));
     if (!new_list) {
@@ -122,7 +87,7 @@ New node creation.
     -> [node], a new created node
 
 */
-static Node* nodeNew(void* value)
+Node* dnodeNew(void* value)
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
     if (!new_node) {
@@ -150,10 +115,10 @@ Appending a given element to the end of the list.
  Parameters [out]:
     -> NULL
 */
-void listPush(DList* list, void* value)
+void dlistPush(DList* list, void* value)
 {
 	if (!list->head) {
-		list->head = nodeNew(value);
+		list->head = dnodeNew(value);
         list->tail = list->head;
 	} else {
 		Node* curr_node = list->head;
@@ -161,7 +126,7 @@ void listPush(DList* list, void* value)
 			curr_node = curr_node->next;
 		}
 
-		curr_node->next = nodeNew(value);
+		curr_node->next = dnodeNew(value);
 		curr_node->next->prev = curr_node;
         list->tail = curr_node->next;
 	}
@@ -180,9 +145,9 @@ Prepending a given element to the beginning of the list.
  Parameters [out]:
     -> NULL
 */
-void listPrepend(DList* list, void* value)
+void dlistPrepend(DList* list, void* value)
 {
-    Node* new_node = nodeNew(value);
+    Node* new_node = dnodeNew(value);
     if (!list->head) {
         list->head = new_node;
         list->tail = list->head;
@@ -209,17 +174,17 @@ Insertion a given element to a specific position.
  Parameters [out]:
     -> NULL
 */
-void listInsert(DList* list, void* value, size_t index)
+void dlistInsert(DList* list, void* value, size_t index)
 {
     if (index == 0) {
-        listPrepend(list, value);
+        dlistPrepend(list, value);
     } else if (!list->head && index > 0) {
         _EMPTY_LIST_ERROR;
     } else if (index > list->size) {
         _INDEX_ERROR(index);
     } else {
         size_t curr_index = 1;
-        Node* new_node = nodeNew(value);
+        Node* new_node = dnodeNew(value);
         Node* curr_node = list->head;
         while (curr_node) {
             Node* next_node = curr_node->next;
@@ -227,7 +192,7 @@ void listInsert(DList* list, void* value, size_t index)
                 curr_node->next = new_node;
                 new_node->prev = curr_node;
                 new_node->next = next_node;
-                if (index < listSize(list)) {
+                if (index < dlistSize(list)) {
                     next_node->prev = new_node;
                 }
             }
@@ -235,7 +200,7 @@ void listInsert(DList* list, void* value, size_t index)
             curr_index++;
         }
 
-        if (index == listSize(list)) {
+        if (index == dlistSize(list)) {
             list->tail = new_node;
         }
         list->size++;
@@ -254,7 +219,7 @@ Remove the last element of a given list.
  Parameters [out]:
     -> NULL
 */
-void listRemoveEnd(DList* list)
+void dlistRemoveEnd(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR; return;
@@ -285,7 +250,7 @@ Remove the first element of a given list.
  Parameters [out]:
     -> NULL
 */
-void listRemoveBegin(DList* list)
+void dlistRemoveBegin(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR; return;
@@ -314,16 +279,16 @@ Remove an element of a given list standing at the specific position.
  Parameters [out]:
     -> NULL
 */
-void listRemoveAt(DList* list, size_t index)
+void dlistRemoveAt(DList* list, size_t index)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
     } else if (index >= list->size) {
         _INDEX_ERROR(index);
     } else if (index == 0) {
-        listRemoveBegin(list);
+        dlistRemoveBegin(list);
     } else if (index == list->size - 1) {
-        listRemoveEnd(list);
+        dlistRemoveEnd(list);
     } else {
         size_t curr_index = 0;
         Node* curr_node = list->head;
@@ -355,12 +320,12 @@ Remove the last element of a given list with a given value.
  Parameters [out]:
     -> NULL
 */
-void listRemoveLast(DList* list, void* value)
+void dlistRemoveLast(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
       // If list doesn't contain an item then just throw the error
-    } else if (!listContains(list, value)) {
+    } else if (!dlistContains(list, value)) {
         _VALUE_ERROR;
     } else {
 
@@ -380,7 +345,7 @@ void listRemoveLast(DList* list, void* value)
             curr_index++;
         }
         // And now we just invoke 'listRemoveAt' function with last_index as a parameter
-        listRemoveAt(list, last_index);
+        dlistRemoveAt(list, last_index);
     }
 }
 
@@ -398,20 +363,20 @@ Remove the first element of a given list with a given value.
  Parameters [out]:
     -> NULL
 */
-void listRemoveFirst(DList* list, void* value)
+void dlistRemoveFirst(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
-    } else if (!listContains(list, value)) {
+    } else if (!dlistContains(list, value)) {
         _VALUE_ERROR;
     } else if (list->head->data == value) {
-        listRemoveBegin(list);
+        dlistRemoveBegin(list);
     } else {
         size_t curr_index = 0;
         Node* curr_node = list->head;
         while (curr_node) {
             if (curr_node->data == value) {
-                listRemoveAt(list, curr_index);
+                dlistRemoveAt(list, curr_index);
                 break;
             }
             curr_node = curr_node->next;
@@ -434,12 +399,12 @@ Remove all elements of a given list with a given value.
  Parameters [out]:
     -> NULL
 */
-void listRemoveAll(DList* list, void* value)
+void dlistRemoveAll(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
       // If list doesn't contain an item then just throw the error
-    } else if (!listContains(list, value)) {
+    } else if (!dlistContains(list, value)) {
         _VALUE_ERROR;
     } else {
 
@@ -451,7 +416,7 @@ void listRemoveAll(DList* list, void* value)
         Node* curr_node = list->head;
         while (curr_node) {
             if (curr_node->data == value) {
-                listRemoveAt(list, curr_index);
+                dlistRemoveAt(list, curr_index);
                 curr_index--;
             }
             curr_node = curr_node->next;
@@ -472,16 +437,16 @@ Creating a new copy, reversing it and return, i.e. not 'in-place'.
     -> [reversed_list], reversed copy of a given list
 
 */
-DList* listReverseNew(DList* list)
+DList* dlistReverseNew(DList* list)
 {
     if (!list->head) {
         return list;
     }
 
-    DList* reversed_list = listNew();
+    DList* reversed_list = dlistNew();
     Node* curr_node = list->tail;
     while (curr_node) {
-        listPush(reversed_list, curr_node->data);
+        dlistPush(reversed_list, curr_node->data);
         curr_node = curr_node->prev;
     }
 
@@ -502,7 +467,7 @@ Getting an index of a given element, or -1 if there is no elements with a such v
     -> [curr_index], an index of the given value
 
 */
-size_t listGetIndex(DList* list, void* value)
+size_t dlistGetIndex(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -541,7 +506,7 @@ Getting a value of a given list standing at the specific position.
     -> [curr_node], an element standing at the specific position
 
 */
-void* listGetAt(DList* list, size_t index)
+void* dlistGetAt(DList* list, size_t index)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -581,7 +546,7 @@ Getting the first element of a given list.
     -> [head], the first element of a given list
 
 */
-void* listGetBegin(DList* list)
+void* dlistGetBegin(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -605,7 +570,7 @@ Getting the last element of a given list.
     -> [tail], the last element of a given list
 
 */
-void* listGetEnd(DList* list)
+void* dlistGetEnd(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -629,7 +594,7 @@ Remove and getting the last element of a given list.
     -> [end], the last element of a given list
 
 */
-void* listPop(DList* list)
+void* dlistPop(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -637,9 +602,9 @@ void* listPop(DList* list)
     }
 
     // Getting the last element of the list
-    void* tail = listGetEnd(list);
+    void* tail = dlistGetEnd(list);
     // Remove the tail of the list making the previous element as the tail
-    listRemoveEnd(list);
+    dlistRemoveEnd(list);
     return tail;
 }
 
@@ -656,7 +621,7 @@ Remove and getting the first element of a given list.
     -> [end], the first element of a given list
 
 */
-void* listPoll(DList* list)
+void* dlistPoll(DList* list)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -664,9 +629,9 @@ void* listPoll(DList* list)
     }
 
     // Getting the first element of the list
-    void* head = listGetBegin(list);
+    void* head = dlistGetBegin(list);
     // Remove the head of the list making the next element as the head
-    listRemoveBegin(list);
+    dlistRemoveBegin(list);
     return head;
 }
 
@@ -682,19 +647,19 @@ Making and return a shallow copy of a given list.
     -> [copied_list], a shallow copy of a given list
 
 */
-DList* listShallCopy(DList* list)
+DList* ddlistShallCopy(DList* list)
 {
     if (!list->head) {
-        return listNew();
+        return dlistNew();
     }
 
     /*  Creating a new list and copying all elements from
        the old one to the new.
      */
-    DList* copied_list = listNew();
+    DList* copied_list = dlistNew();
     Node* curr_node = list->head;
     while (curr_node) {
-        listPush(copied_list, curr_node->data);
+        dlistPush(copied_list, curr_node->data);
         curr_node = curr_node->next;
     }
     return copied_list;
@@ -712,13 +677,13 @@ Making and return a deep copy of a given list.
     -> [copied_list], a deep copy of a given list
 
 */
-DList* listDeepCopy(DList* list)
+DList* dlistDeepCopy(DList* list)
 {
     if (!list->head) {
         return list;
     }
 
-    DList* copied_list = listNew();
+    DList* copied_list = dlistNew();
 
     /*  Here we directly assign the head node of a given list
      * to the head of a new one, that's why all changes in the new list
@@ -742,7 +707,7 @@ Counting the number of appearences of a given value in the list.
     -> [counter], the number of appearences of a given element in the list
 
 */
-size_t listCount(DList* list, void* value)
+size_t dlistCount(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -778,18 +743,18 @@ Making a sublist of a given list.
     -> [sublist], a sublist of a given list
 
 */
-DList* listSublist(DList* list, size_t begin_index, size_t end_index)
+DList* dlistSublist(DList* list, size_t begin_index, size_t end_index)
 {
     if (!list->head || begin_index >= list->size) {
-        return listNew();
+        return dlistNew();
     } if (end_index >= list->size && begin_index <= end_index) {
         end_index = list->size - 1;
     } if (begin_index > end_index) {
         panic("%s:%d: begin index of substr must be less than end index", __FILE__, __LINE__);
-        return listNew();
+        return dlistNew();
     }
 
-    DList* sublist = listNew();
+    DList* sublist = dlistNew();
 
     /*  We start the counter (current index of element in list) and
      * start infinite loop. When the counter is within the bounds of two
@@ -803,10 +768,10 @@ DList* listSublist(DList* list, size_t begin_index, size_t end_index)
     Node* curr_node = list->head;
     while (true) {
         if (curr_index >= begin_index && curr_index < end_index) {
-            listPush(sublist, curr_node->data);
+            dlistPush(sublist, curr_node->data);
         }
         if (curr_index == end_index) {
-            listPush(sublist, curr_node->data);
+            dlistPush(sublist, curr_node->data);
             break;
         }
         curr_node = curr_node->next;
@@ -829,7 +794,7 @@ Checking if a given list contains a given value or not.
     -> [bool], the result of checking if a given value is in list or not
 
 */
-bool listContains(DList* list, void* value)
+bool dlistContains(DList* list, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -866,7 +831,7 @@ Swapping two elements of a given list by indexes.
  Parameters [out]:
     -> NULL
 */
-void listSwapByIndexes(DList* list, size_t f_index, size_t s_index)
+void dlistSwapByIndexes(DList* list, size_t f_index, size_t s_index)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -875,11 +840,11 @@ void listSwapByIndexes(DList* list, size_t f_index, size_t s_index)
     } else if (s_index >= list->size) {
         _INDEX_ERROR(s_index);
     } else {
-        void* f_value = listGetAt(list, f_index);
-        void* s_value = listGetAt(list, s_index);
+        void* f_value = dlistGetAt(list, f_index);
+        void* s_value = dlistGetAt(list, s_index);
 
-        listReplaceByIndex(list, f_index, s_value);
-        listReplaceByIndex(list, s_index, f_value);
+        dlistReplaceByIndex(list, f_index, s_value);
+        dlistReplaceByIndex(list, s_index, f_value);
     }
 }
 
@@ -899,21 +864,21 @@ Swapping two elements of a given list by values.
  Parameters [out]:
     -> NULL
 */
-void listSwapValues(DList* list, void* f_value, void* s_value)
+void dlistSwapValues(DList* list, void* f_value, void* s_value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
-    } if (!listContains(list, f_value)) {
+    } if (!dlistContains(list, f_value)) {
         _VALUE_ERROR;
-    } else if (!listContains(list, s_value)) {
+    } else if (!dlistContains(list, s_value)) {
         _VALUE_ERROR;
     } else {
         // Getting indexes of given values
-        size_t f_index = listGetIndex(list, f_value);
-        size_t s_index = listGetIndex(list, s_value);
+        size_t f_index = dlistGetIndex(list, f_value);
+        size_t s_index = dlistGetIndex(list, s_value);
 
-        listReplaceByIndex(list, f_index, s_value);
-        listReplaceByIndex(list, s_index, f_value);
+        dlistReplaceByIndex(list, f_index, s_value);
+        dlistReplaceByIndex(list, s_index, f_value);
     }
 }
 
@@ -932,7 +897,7 @@ Replacing an element of a given list by index.
  Parameters [out]:
     -> NULL
 */
-void listReplaceByIndex(DList* list, size_t index, void* value)
+void dlistReplaceByIndex(DList* list, size_t index, void* value)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
@@ -973,11 +938,11 @@ Replacing an element of a given list by index.
  Parameters [out]:
     -> NULL
 */
-void listReplaceByValue(DList* list, void* value_to_repl, void* value_for_repl)
+void dlistReplaceByValue(DList* list, void* value_to_repl, void* value_for_repl)
 {
     if (!list->head) {
         _EMPTY_LIST_ERROR;
-    } if (!listContains(list, value_to_repl)) {
+    } if (!dlistContains(list, value_to_repl)) {
         _VALUE_ERROR;
     } else {
 
@@ -1008,7 +973,7 @@ Extending a given list by another one.
  Parameters [out]:
     -> NULL
 */
-void listExtend(DList* f_list, DList* s_list)
+void dlistExtend(DList* f_list, DList* s_list)
 {
     if (!f_list->head) {
         f_list->head = s_list->head;
@@ -1019,7 +984,7 @@ void listExtend(DList* f_list, DList* s_list)
          */
         Node* s_list_node = s_list->head;
         while (s_list_node) {
-            listPush(f_list, s_list_node->data);
+            dlistPush(f_list, s_list_node->data);
             s_list_node = s_list_node->next;
         }
     }
@@ -1037,7 +1002,7 @@ Swapping two given lists.
  Parameters [out]:
     -> NULL
 */
-void swapLists(DList* f_list, DList* s_list)
+void dswapLists(DList* f_list, DList* s_list)
 {
     Node* temp_head = f_list->head;
     Node* temp_tail = f_list->tail;
@@ -1055,57 +1020,6 @@ void swapLists(DList* f_list, DList* s_list)
 
 /*
 
-Sorting a given list 'in-place', i.e. the list is mutable.
-> Type of a given data structure must be List.
-> Complex time - depending on what kind of sorting algorithm is used here.
-
- Parameters [in]:
-    -> [list], a list, which should be sorted by a given function
-    -> [func], a function, which should sort a given list
-
- Parameters [out]:
-    -> NULL
-*/
-void listSortMut(DList* list, DList*(*func)(DList*))
-{
-    if (!list->head) {
-        _EMPTY_LIST_ERROR;
-    }
-    
-    func(list);
-}
-
-/*
-
-Creating a copy of a given list, sorting it and return.
-> Given list must not be empty.
-> Type of a given data structure must be List.
-> Complex time - depending on what kind of sorting algorithm is used here.
-
- Parameters [in]:
-    -> [list], a list, a copy of which sould be sorted
-    -> [func], a function, which should sort a given list
-
- Parameters [out]:
-    -> [new_list], a sorted copy of given list
-
-*/
-DList* listSortNew(DList* list, DList*(*func)(DList*))
-{
-    if (!list->head) {
-        _EMPTY_LIST_ERROR;
-        return listNew();
-    }
-
-    // Create a shallow copy of a give list
-    DList* sorted_list = listShallCopy(list);
-    func(sorted_list);
-
-    return sorted_list;
-}
-
-/*
-
 Clearing a given list without deleting allocated memory, shallow clearing.
 > Given list must not be empty.
 > Complex time - O(n).
@@ -1116,7 +1030,7 @@ Clearing a given list without deleting allocated memory, shallow clearing.
  Parameters [out]:
     -> NULL
 */
-static void listClear(DList* list)
+ void dlistClear(DList* list)
 {
     if (!list->head) {
         panic("%s:%d: cannot clear empty list", __FILE__, __LINE__);
@@ -1143,7 +1057,7 @@ Clearing a given list with deleting allocated memory, actually remove.
  Parameters [out]:
     -> NULL
 */
-static void listDelete(DList* list)
+ void dlistDelete(DList* list)
 {
     if (!list->head) {
         panic("%s:%d: cannot remove empty list", __FILE__, __LINE__);

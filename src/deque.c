@@ -24,30 +24,13 @@ typedef struct Deque_type {
 
 -> Macroses <-
 
+ Check Error macroses in "include/basic.h" header file.
  -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given deque
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
 
 #include "../include/deque.h"
-
-static Deque* dequeNew();
-static Deque* dequeFromArr(int* array, int size);
-static void dequeClear(Deque* deque);
-static void dequeDelete(Deque* deque);
-
-void dequeAdd(Deque* deque, void* item);
-void dequeAddLeft(Deque* deque, void* item);
-void* dequePop(Deque* deque);
-void* dequePopLeft(Deque* deque);
-void* dequeFront(Deque* deque);
-void* dequeRear(Deque* deque);
-size_t dequeSize(Deque* deque);
-bool dequeIsEmpty(Deque* deque);
-bool dequeIsFull(Deque* deque);
-bool dequeSizeIsValid(Deque* deque);
-void dequeExpandCapacity(Deque* deque);
-void dequeCutCapacity(Deque* deque);
 
 /*
    Features which will be added soon:
@@ -75,7 +58,7 @@ start values *
     -> [deque], a new created deque
 
 */
-static Deque* dequeNew()
+ Deque* dequeNew()
 {
     Deque* deque = (Deque*)malloc(sizeof(Deque));
     if (!deque) {
@@ -105,7 +88,7 @@ Making a deque using a given array.
     -> [deque], a made deque using a given array
 
 */
-static Deque* dequeFromArr(int* array, int size)
+ Deque* dequeFromArr(int* array, int size)
 {
     Deque* deque = dequeNew();
 
@@ -410,7 +393,7 @@ Clearing a given deque without deleting allocated memory.
  Parameters [out]:
     -> NULL
 */
-static void dequeClear(Deque* deque)
+ void dequeClear(Deque* deque)
 {
     deque->size = 0;
     deque->capacity = STANDARD_CAPACITY;
@@ -428,7 +411,7 @@ Clearing all memory that was allocated for the deque.
  Parameters [out]:
     -> NULL
 */
-static void dequeDelete(Deque* deque)
+ void dequeDelete(Deque* deque)
 {
     free(deque->buff);
     free(deque);

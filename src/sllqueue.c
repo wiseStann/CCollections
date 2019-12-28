@@ -28,28 +28,13 @@ typedef struct Queue_type {
 
 -> Macroses <-
 
+ Check Error macroses in "include/basic.h" header file.
  -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given queue
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
 
 #include "../include/sllqueue.h"
-
-
-static Queue* queueNew();
-static Queue* queueFromArr(int* array, int size);
-static Node* nodeNew(void* value);
-static void queueClear(Queue* queue);
-static void queueDelete(Queue* queue);
-
-void enqueue(Queue* queue, void* item);
-void* dequeue(Queue* queue);
-void* queueFront(Queue* queue);
-void* queueRear(Queue* queue);
-size_t queueSize(Queue* queue);
-bool queueIsEmpty(Queue* queue);
-bool queueIsFull(Queue* queue);
-bool queueSizeIsValid(Queue* queue);
 
 /*
    Features which will be added soon:
@@ -73,7 +58,7 @@ New queue creation.
     -> [queue], a new created queue
 
 */
-static Queue* queueNew()
+ Queue* queueNew()
 {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
     if (!queue) {
@@ -98,7 +83,7 @@ Making a queue from a given array.
     -> [queue], the queue, which should be made with the given array
 
 */
-static Queue* queueFromArr(int* array, int size)
+ Queue* queueFromArr(void** array, int size)
 {   
     Queue* queue = queueNew();
 
@@ -120,7 +105,7 @@ New node creation.
     -> [node], a new created node
 
 */
-static Node* nodeNew(void* value)
+ Node* qnodeNew(void* value)
 {
     Node* node = (Node*)malloc(sizeof(Node));
     if (!node) {
@@ -146,7 +131,7 @@ Appending new element to the end of a given queue.
 void enqueue(Queue* queue, void* item)
 {
     if (!queue->front) {
-        queue->front = nodeNew(item);
+        queue->front = qnodeNew(item);
         queue->back = queue->front;
     } else if (queue->size == MAXSIZE) {
         panic("%s:%d: max size of elements is reached", __FILE__, __LINE__);
@@ -156,7 +141,7 @@ void enqueue(Queue* queue, void* item)
         while (curr_node->next) {
             curr_node = curr_node->next;
         }
-        curr_node->next = nodeNew(item);
+        curr_node->next = qnodeNew(item);
         queue->back = curr_node->next;
     }
     queue->size++;
@@ -320,7 +305,7 @@ Clearing a given queue without deleting allocated memory.
  Parameters [out]:
     -> NULL
 */
-static void queueClear(Queue* queue)
+ void queueClear(Queue* queue)
 {
     if (!queue->front) {
         panic("%s:%d: cannot clear empty queue", __FILE__, __LINE__);
@@ -345,7 +330,7 @@ Clearing all memory that was allocated for the queue.
  Parameters [out]:
     -> NULL
 */
-static void queueDelete(Queue* queue)
+ void queueDelete(Queue* queue)
 {
     if (!queue->front) {
         panic("%s:%d: cannot remove empty queue", __FILE__, __LINE__);

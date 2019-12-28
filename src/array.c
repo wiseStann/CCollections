@@ -24,7 +24,7 @@ typedef struct Array_type {
 
 -> Macroses <-
 
-Check Error macroses in header file.
+Check Error macroses in "include/basic.h" header file.
 
 A short description of all:
  -> [_EMPTY_ARRAY_ERROR], a macros for notification about empty given array
@@ -35,54 +35,6 @@ A short description of all:
 */
 
 #include "../include/array.h"
-
-
-#define arrayCapacity(x) (x->capacity)
-#define arrayBuffer(x) (x->buff)
-#define arrayLength(x) (x->size)
-#define arrayIterLength(x) (x->arr->size)
-
-static Array* arrayNew();
-static Config* const configsNew(size_t cap, double exp_val);
-static Array* arrayCustomNew(Config* const configuration);
-static void arrayExpandCapacity(Array* array);
-static void arrayCutCapacity(Array* array);
-static void arrayClear(Array* array);
-static void arrayFree(Array* array);
-
-void arrayToEnd(Array* array, void* value);
-void arrayToBegin(Array* array, void* value);
-void arrayAddAt(Array* arr, void* value, size_t index);
-void arrayRemoveEnd(Array* array);
-void arrayRemoveBegin(Array* array);
-void arrayRemoveAt(Array* array, size_t index);
-void arrayRemoveLast(Array* array, void* value);
-void arrayRemoveFirst(Array* array, void* value);
-void arrayRemoveAll(Array* array, void* value);
-void arrayReverseMut(Array* array);
-Array* arrayReverseNew(Array* array);
-size_t arrayGetIndex(Array* array, void* value);
-void* arrayGetAt(Array* array, size_t index);
-void* arrayGetBegin(Array* array);
-void* arrayGetEnd(Array* array);
-void* arrayPop(Array* array);
-void* arrayPoll(Array* array);
-size_t arrayCount(Array* array, void* value);
-Array* arraySubarray(Array* array, size_t begin_index, size_t end_index);
-double arraySum(Array* array);
-double arrayMean(Array* array);
-void* arrayMin(Array* array);
-void* arrayMax(Array* array);
-bool arrayContains(Array* array, void* value);
-Array* arrayCopy(Array* array);
-void arraySwapByIndexes(Array* array, size_t f_index, size_t s_index);
-void arraySwapByValues(Array* array, void* f_value, void* s_value);
-void arrayReplaceByIndex(Array* array, size_t index, void* value);
-void arrayReplaceByValue(Array* array, void* value_to_repl, void* value_for_repl);
-void arrayExtend(Array* f_arr, Array* s_arr);
-void swapArrays(Array* f_arr, Array* s_arr);
-void arraySortMut(Array* array, void**(*func)(void**, int));
-void arraySortMut(Array* array, void**(*func)(void**, int));
 
 /*
 
@@ -128,7 +80,7 @@ Creating a new configurations for a custom array.
     -> [new_confs], new configurations for creating a custom array
 
 */
-static Config* const configsNew(size_t cap, double exp_val)
+Config* const configsNew(size_t cap, double exp_val)
 {
     Config* const new_confs = (Config*)malloc(sizeof(Config));
     if (!new_confs) {
@@ -158,7 +110,7 @@ Customization of a given array.
  Parameters [out]:
     -> NULL
 */
-static Array* arrayCustomNew(Config* const configuration)
+Array* arrayCustomNew(Config* const configuration)
 {   
     Array* arr_new = arrayNew();
 
@@ -166,6 +118,30 @@ static Array* arrayCustomNew(Config* const configuration)
     arr_new->capacity = configuration->capacity;
 
     return arr_new;
+}
+
+/*
+
+Creating an Array from a given array (C embedded).
+> Complex time - O(n).
+
+ Parameters [in]:
+    -> [array], an array out of which an Array should be created
+    -> [size], the size of a given array
+
+ Parameters [out]:
+    -> [new_arr], a new created array
+
+*/
+Array* arrayFromIntArr(int* array, int size)
+{
+    Array* new_arr = arrayNew();
+
+    for (int i = 0; i < size; i++) {
+        arrayToEnd(new_arr, (void*)(size_t)array[i]);
+    }
+    
+    return new_arr;
 }
 
 /*
@@ -223,8 +199,7 @@ void arrayAddAt(Array* array, void* element, size_t index)
 {
     if (index > array->size) {
         _INDEX_ERROR(index);
-    }
-    if (array->size >= array->capacity) {
+    } if (array->size >= array->capacity) {
         arrayExpandCapacity(array);
     }
 
@@ -289,18 +264,17 @@ void arrayRemoveAt(Array* array, size_t index)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    }
-    if (index >= array->size) {
+    } else if (index >= array->size) {
         _INDEX_ERROR(index);
+    } else {
+        size_t mem_block = (array->size - index) * sizeof(void*);
+        memmove (
+            &(array->buff[index]),
+            &(array->buff[index+1]),
+            mem_block
+        );
+        array->size--;
     }
-
-    size_t mem_block = (array->size - index) * sizeof(void*);
-    memmove (
-        &(array->buff[index]),
-        &(array->buff[index+1]),
-        mem_block
-    );
-    array->size--;
 }
 
 /*
@@ -320,13 +294,13 @@ void arrayRemoveFirst(Array* array, void* value)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    }
-    
-    size_t index = arrayGetIndex(array, value);
-    if (index != -1) {
-        arrayRemoveAt(array, index);
     } else {
-        _VALUE_ERROR;
+        size_t index = arrayGetIndex(array, value);
+        if (index != -1) {
+            arrayRemoveAt(array, index);
+        } else {
+            _VALUE_ERROR;
+        }
     }
 }
 
@@ -346,8 +320,9 @@ void arrayRemoveLast(Array* array, void* value)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    } 
-    if (arrayContains(array, value)) {
+    } else if (!arrayContains(array, value)) {
+        _VALUE_ERROR;
+    } else {
         size_t last_index;
 
         for (int i = 0; i < array->size; i++) {
@@ -357,8 +332,6 @@ void arrayRemoveLast(Array* array, void* value)
         }
 
         arrayRemoveAt(array, last_index);
-    } else {
-        _VALUE_ERROR;
     }
 }
 
@@ -379,14 +352,14 @@ void arrayRemoveAll(Array* array, void* value)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    }
-
-    int index;
-    for (int i = 0; i < array->size; i++) {
-        if (array->buff[i] == value) {
-            index = i;
-            arrayRemoveAt(array, index);
-            i--;
+    } else {
+        int index;
+        for (int i = 0; i < array->size; i++) {
+            if (array->buff[i] == value) {
+                index = i;
+                arrayRemoveAt(array, index);
+                i--;
+            }
         }
     }
 }
@@ -405,7 +378,7 @@ Complex time - O(n).
 void arrayReverseMut(Array* array)
 {
     if (array->size == 0) {
-        _EMPTY_ARRAY_ERROR;
+        _EMPTY_ARRAY_ERROR; return;
     }
 
     void **temp_buff = malloc(array->size * sizeof(void*));
@@ -441,7 +414,7 @@ Creating new array, copying elements of old one to that in reverse order.
 Array* arrayReverseNew(Array* array)
 {
     if (array->size == 0) {
-        _EMPTY_ARRAY_ERROR;
+        return arrayNew();
     }
 
     Array* new_arr = arrayNew();
@@ -469,6 +442,7 @@ Getting the index of the given value in the array.
 size_t arrayGetIndex(Array* array, void* value)
 {
     if (array->size == 0) {
+        _EMPTY_ARRAY_ERROR;
         return -1;
     }
 
@@ -499,12 +473,13 @@ void* arrayGetAt(Array* array, size_t index)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    }
-    if (index >= array->size) {
+        return NULL;
+    } else if (index >= array->size) {
         _INDEX_ERROR(index);
+        return NULL;
+    } else {
+        return array->buff[index];
     }
-
-    return array->buff[index];
 }
 
 /*
@@ -524,6 +499,7 @@ void* arrayGetBegin(Array* array)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
+        return NULL;
     }
 
     return array->buff[0];
@@ -546,6 +522,7 @@ void* arrayGetEnd(Array* array)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
+        return NULL;
     }
 
     return array->buff[array->size - 1];
@@ -568,6 +545,7 @@ void* arrayPop(Array* array)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
+        return NULL;
     }
 
     void* tail = arrayGetAt(array, array->size - 1);
@@ -594,6 +572,7 @@ void* arrayPoll(Array* array)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
+        return NULL;
     }
 
     void* head = array->buff[0];
@@ -621,6 +600,7 @@ size_t arrayCount(Array* array, void* value)
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
+        return 0;
     }
 
     size_t count = 0;
@@ -659,14 +639,15 @@ Array* arraySubarray(Array* array, size_t begin_index, size_t end_index)
         _INDEX_ERROR(end_index);
     } else if (begin_index > end_index) {
         panic("%s:%d: begin index of substr must be less than end index", __FILE__, __LINE__);
+    } else {
+        Array* substring = arrayNew();
+        for (int i = begin_index; i <= end_index; i++) {
+            arrayToEnd(substring, array->buff[i]);
+        }
+        substring->size = end_index - begin_index + 1;
+        return substring;
     }
-
-    Array* substring = arrayNew();
-    for (int i = begin_index; i <= end_index; i++) {
-        arrayToEnd(substring, array->buff[i]);
-    }
-    substring->size = end_index - begin_index + 1;
-    return substring;
+    return NULL;
 }
 
 /*
@@ -741,11 +722,11 @@ void arraySwapByIndexes(Array* array, size_t f_index, size_t s_index)
         _INDEX_ERROR(f_index);
     } else if (s_index >= array->size) {
         _INDEX_ERROR(s_index);
+    } else {
+        void* temp = array->buff[f_index];
+        array->buff[f_index] = array->buff[s_index];
+        array->buff[s_index] = temp;
     }
-
-    void* temp = array->buff[f_index];
-    array->buff[f_index] = array->buff[s_index];
-    array->buff[s_index] = temp;
 }
 
 /*
@@ -766,12 +747,12 @@ void arraySwapByValues(Array* array, void* f_value, void* s_value)
 {
     size_t f_index = arrayGetIndex(array, f_value);
     if (f_index == -1) {
-        _VALUE_ERROR;
+        _VALUE_ERROR; return;
     }
 
     size_t s_index = arrayGetIndex(array, s_value);
     if (s_index == -1) {
-        _VALUE_ERROR;
+        _VALUE_ERROR; return;
     }
 
     arraySwapByIndexes(array, f_index, s_index);
@@ -798,9 +779,9 @@ void arrayReplaceByIndex(Array* array, size_t index, void* value)
         _VALUE_ERROR;
     } else if (index >= array->size) {
         _INDEX_ERROR(index);
+    } else {
+        array->buff[index] = value;
     }
-
-    array->buff[index] = value;
 }
 
 /*
@@ -822,13 +803,13 @@ void arrayReplaceByValue(Array* array, void* value_to_repl, void* value_for_repl
 {
     if (array->size == 0) {
         _EMPTY_ARRAY_ERROR;
-    }
-
-    size_t index = arrayGetIndex(array, value_to_repl);
-    if (index != -1) {
-        array->buff[index] = value_for_repl;
     } else {
-        _VALUE_ERROR;
+        size_t index = arrayGetIndex(array, value_to_repl);
+        if (index != -1) {
+            array->buff[index] = value_for_repl;
+        } else {
+            _VALUE_ERROR;
+        }
     }
 }
 
@@ -939,13 +920,13 @@ void arrayExpandCapacity(Array* array)
 {
     if (array->capacity >= MAXSIZE) {
         panic("'%s':%d: max capacity size exceeded", __FUNCTION__, __LINE__);
+    } else {
+        size_t temp_cap = array->capacity * array->exp_val;
+        temp_cap = temp_cap > MAXSIZE ? MAXSIZE : temp_cap;
+
+        array->capacity = temp_cap;
+        array->buff = realloc(array->buff, array->capacity * sizeof(void*));
     }
-
-    size_t temp_cap = array->capacity * array->exp_val;
-    temp_cap = temp_cap > MAXSIZE ? MAXSIZE : temp_cap;
-
-    array->capacity = temp_cap;
-    array->buff = realloc(array->buff, array->capacity * sizeof(void*));
 }
 
 /*
@@ -1021,17 +1002,6 @@ This wrapper allows us to iterate over a given array.
 It provides some the most useful methods.
 
 */
-
-static ArrayIterator* arrayIterNew(Array* array);
-
-bool arrayIterHasNext(ArrayIterator* iterator);
-bool arrayIterHasPrev(ArrayIterator* iterator);
-void* arrayIterNext(ArrayIterator* iterator);
-void* arrayIterPrev(ArrayIterator* iterator);
-void arrayIterAddAt(ArrayIterator* iterator, size_t index, void* value);
-void arrayIterRemoveAt(ArrayIterator* iterator, size_t index);
-void* arrayIterGetAt(ArrayIterator* iterator, size_t index);
-void arrayIterReplaceAt(ArrayIterator* iterator, size_t index, void* value);
 
 /*
 

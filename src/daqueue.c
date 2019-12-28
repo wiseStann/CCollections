@@ -24,29 +24,13 @@ typedef struct Queue_type {
 
 -> Macroses <-
 
+ Check Error macroses in "include/basic.h" header file.
  -> [_EMPTY_QUEUE_ERROR], a macros for notification about empty given queue
  -> [_MEMORY_ALLOCATION_ERROR], a macros for notification about memory allocation error
 
 */
 
 #include "../include/daqueue.h"
-
-static Queue* queueNew();
-static Queue* queueFromArr(int* array, int size);
-static void queueClear(Queue* queue);
-static void queueDelete(Queue* queue);
-
-void enqueue(Queue* queue, void* item);
-void* dequeue(Queue* queue);
-void* queueFront(Queue* queue);
-void* queueRear(Queue* queue);
-size_t queueSize(Queue* queue);
-bool queueIsEmpty(Queue* queue);
-bool queueIsFull(Queue* queue);
-bool queueSizeIsValid(Queue* queue);
-void queueExpandCapacity(Queue* queue);
-void queueCutCapacity(Queue* queue);
-void print(Queue* queue, bool show_size, bool show_cap);
 
 /*
    Features which will be added soon:
@@ -73,7 +57,7 @@ start values *
     -> [queue], a new created queue
 
 */
-static Queue* queueNew()
+ Queue* daQueueNew()
 {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
     if (!queue) {
@@ -103,12 +87,12 @@ Making a queue using a given array.
     -> [queue], a made queue using a given array
 
 */
-static Queue* queueFromArr(int* array, int size)
+ Queue* daQueueFromArr(void** array, int size)
 {
-    Queue* queue = queueNew();
+    Queue* queue = daQueueNew();
 
     for (int i = 0; i < size; i++) {
-        enqueue(queue, (void*)(size_t)array[i]);
+        daEnqueue(queue, (void*)(size_t)array[i]);
     }
     return queue;
 }
@@ -125,10 +109,10 @@ Appending an element to a given queue.
  Parameters [out]:
     -> NULL
 */
-void enqueue(Queue* queue, void* item)
+void daEnqueue(Queue* queue, void* item)
 {   
     if (queue->size >= queue->capacity) {
-        queueExpandCapacity(queue);
+        daQueueExpandCapacity(queue);
     }
 
     queue->buff[queue->size++] = item;
@@ -147,7 +131,7 @@ Remove and getting the first element of a given queue.
     -> [head], the first element of a given queue
 
 */
-void* dequeue(Queue* queue)
+void* daDequeue(Queue* queue)
 {
     if (queue->size == 0) {
         _EMPTY_QUEUE_ERROR;
@@ -177,7 +161,7 @@ Getting the head of a given queue.
     -> [head], the first element of a given queue
 
 */
-void* queueFront(Queue* queue)
+void* daQueueFront(Queue* queue)
 {
     if (queue->size == 0) {
         _EMPTY_QUEUE_ERROR;
@@ -201,7 +185,7 @@ Getting the tail of a given queue.
     -> [tail], the last element of a given queue
 
 */
-void* queueRear(Queue* queue)
+void* daQueueRear(Queue* queue)
 {   
     if (queue->size == 0) {
         _EMPTY_QUEUE_ERROR;
@@ -224,7 +208,7 @@ Getting the size of a given queue.
     -> [size], the size of a given queue
 
 */
-size_t queueSize(Queue* queue)
+size_t daQueueSize(Queue* queue)
 {   
     size_t size = queue->size;
     return size;
@@ -242,7 +226,7 @@ Checking if a given queue is empty or not.
     -> [bool], the boolean result of checking if a given queue is empty or not
 
 */
-bool queueIsEmpty(Queue* queue)
+bool daQueueIsEmpty(Queue* queue)
 {
     if (queue->size == 0)
         return true;
@@ -261,7 +245,7 @@ Checking if a given queue is full or not.
     -> [bool], the boolean result of checking if a given queue is full or not
 
 */
-bool queueIsFull(Queue* queue)
+bool daQueueIsFull(Queue* queue)
 {
     if (queue->size == MAXSIZE)
         return true;
@@ -280,7 +264,7 @@ Checking is the size of a given queue is valid or not.
     -> [bool], the boolean result of checking if the size of a given queue is valid or not
 
 */
-bool queueSizeIsValid(Queue* queue)
+bool daQueueSizeIsValid(Queue* queue)
 {
     if (queue->size <= MAXSIZE)
         return true;
@@ -303,7 +287,7 @@ memory, but just to expand it when it is necessary *
  Parameters [out]:
     -> NULL
 */
-void queueExpandCapacity(Queue* queue)
+void daQueueExpandCapacity(Queue* queue)
 {
     if (queue->capacity >= MAXSIZE) {
         panic("'%s':%d: max capacity size exceeded", __FUNCTION__, __LINE__);
@@ -331,7 +315,7 @@ equals to the number of its elements (size) *
  Parameters [out]:
     -> NULL
 */
-void queueCutCapacity(Queue* queue)
+void daQueueCutCapacity(Queue* queue)
 {
     if (queue->size == 0) {
         queue->capacity = STANDARD_CAPACITY;
@@ -351,7 +335,7 @@ Clearing a given queue without deleting allocated memory.
  Parameters [out]:
     -> NULL
 */
-static void queueClear(Queue* queue)
+ void daQueueClear(Queue* queue)
 {
     queue->size = 0;
     queue->capacity = STANDARD_CAPACITY;
@@ -369,7 +353,7 @@ Clearing all memory that was allocated for the queue.
  Parameters [out]:
     -> NULL
 */
-static void queueDelete(Queue* queue)
+ void daQueueDelete(Queue* queue)
 {
     free(queue->buff);
     free(queue);
