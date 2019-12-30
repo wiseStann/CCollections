@@ -63,7 +63,7 @@
 ## - How to build and run the library
 ### - Building
 &nbsp; &nbsp; &nbsp; Before we start, there are some pre requirements for your platform, viz. cmake and make software.</br>
-* Windows. For Windows `cmake` can be installed on the official web site in 'Downloads' section. Direct link to the page: https://cmake.org/download/. Don't forget to add `cmake` to system PATH variable. `make` can be installed here: http://gnuwin32.sourceforge.net/packages/make.htm </br>
+* Windows. For Windows `cmake` can be installed on the official web site in 'Downloads' section. Direct link to the page: https://cmake.org/download/. Don't forget to add `cmake` to system PATH variable during the installation. `make` can be installed here: http://gnuwin32.sourceforge.net/packages/make.htm. After you installed `make` to your local machine, you have to add `make` to PATH in order to use it from command line. By default, make.exe application is located here C:\Program Files\GnuWin32\bin, so just add this path to PATH variable in Control Panel. </br>
 * Linux. For Linux `cmake` can be installed by the next command:
 ```
 $ sudo apt-get -y install cmake
