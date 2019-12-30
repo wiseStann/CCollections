@@ -10,7 +10,7 @@
 - [What is a Data Structure](#--about-this-project)
 - [Why learn data structure](#--what-is-a-data-structure)
 - [Popular data structures and library implementations](#--about-popular-data-structures)
-- [Build and Run](#--how-to-build-and-run-the-library-linux)
+- [Build and Run](#--how-to-build-and-run-the-library)
 
 ## - What is a Data Structure?
 > Data structure is a way in which data are stored for efficient search and retrieval.
