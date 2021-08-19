@@ -9,7 +9,7 @@ of the License, or any later version.
 
 [Development period] -> 8/11/19 - 13/11/19
 [Author] -> Stanislav Kerimov
-[Github] -> https://github.com/StarKerrr
+[Github] -> https://github.com/wiseStann
 
 
 -> Structure <-
