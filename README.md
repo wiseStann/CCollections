@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/wiseStan/CCollections/blob/master/res/c-and-data-structures.png?raw=true" width="600px">
+  <img src="https://github.com/wiseStann/CCollections/blob/master/res/c-and-data-structures.png" width="600px">
 </p>
 
 ## - About this project
