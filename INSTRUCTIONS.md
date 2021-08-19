@@ -4,7 +4,7 @@
 First of all, you need to clone this repository on your local PC:
 </br>
 ```
-$ git clone https://github.com/StarKerrr/CCollections.git
+$ git clone https://github.com/wiseStann/CCollections.git
 ```
 When you clone this repository on your local machine, change your current directory to this Project folder:
 </br>
