@@ -8,8 +8,8 @@ published by the Free Software Foundation, either version 3
 of the License, or any later version.
 
 [Development period] -> 30/11/19 - 4/12/19
-[Author] -> Stanislav Kerimov
-[Github] -> https://github.com/StarKerrr
+[Author] -> Stacet Kerr
+[Github] -> https://github.com/wiseStann
 
 
 -> Structure <-
