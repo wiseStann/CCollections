@@ -8,7 +8,7 @@ published by the Free Software Foundation, either version 3
 of the License, or any later version.
 
 [Development period] -> 8/11/19 - 13/11/19
-[Author] -> Stanislav Kerimov
+[Author] -> Stacey Kerr
 [Github] -> https://github.com/wiseStann
 
 
