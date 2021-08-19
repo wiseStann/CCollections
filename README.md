@@ -24,40 +24,40 @@
 
 <h3>Array</h3>
 
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/array-diargam.png" width="650px">
+<img src="https://github.com/wiseStann/CCollections/blob/master/res/array-diargam.png" width="650px">
 &nbsp; &nbsp; &nbsp; &nbsp; An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array). Each element can be uniquely identified by their index in the array. This data structure is the base of majority of data structures and it isn't surprising.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; As it was said above, this library is the library of generic data structures and array is not an exception. The usage of Array data structure is truly simple:
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/ArrayUsage.png)
+![](https://github.com/wiseStann/CCollections/blob/master/res/ArrayUsage.png)
 </br></br>
 
 <h3>Linked List</h3>
 
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/linked-list.svg" width="650px">
+<img src="https://github.com/wiseStann/CCollections/blob/master/res/linked-list.svg" width="650px">
 &nbsp; &nbsp; &nbsp; &nbsp; One disadvantage of using arrays to store data is that arrays are static structures and therefore can't be easily extended or reduced to fit the data set. Unlike arrays, the elements in linked lists are not stored at contiguous memory locations. They are linked using pointers as shown in the image above. Each element of a list is comprising of two items - the data and a reference to the next node. The last node has a reference to null. A linked list is a dynamic data structure, therefore number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; Let's see what features the library provides to use a linked list data structure.
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/SListUsage.png)
+![](https://github.com/wiseStann/CCollections/blob/master/res/SListUsage.png)
 </br></br>
 
 <h3>Stack</h3>
 
 </br>
 
-<img src="https://github.com/StarKerrr/CCollections/blob/master/res/stackImg.png" width="650px">
+<img src="https://github.com/wiseStann/CCollections/blob/master/res/stackImg.png" width="650px">
 &nbsp; &nbsp; &nbsp; &nbsp; A stack is a basic data structure that can be logically thought of as a linear structure represented by a real physical stack or pile, a structure where insertion and deletion of items takes place at one end called top of the stack. The basic concept can be illustrated by thinking of your data set as a stack of books or cards where you can only take the top item off the stack in order not to destroy all the stack of things. The basic implementation of a stack is also called a LIFO (Last In First Out) to demonstrate the way it accesses data.
 </br></br>
 
 &nbsp; &nbsp; &nbsp; &nbsp; In my library you can find two implementations of Stack, viz. dynamic array-based and singly linked list-based. Well, that's how you can use Stack in your code.
 </br>
 
-![](https://github.com/StarKerrr/CCollections/blob/master/res/StackUsage.png)
+![](https://github.com/wiseStann/CCollections/blob/master/res/StackUsage.png)
 </br></br></br>
 
 ## - How to build and run the library
@@ -72,7 +72,7 @@ $ sudo apt-get -y install cmake
 First of all, you need to clone this repository on your local PC:
 </br>
 ```
-$ git clone https://github.com/StarKerrr/CCollections.git
+$ git clone https://github.com/wiseStann/CCollections.git
 ```
 When you clone this repository on your local machine, change your current directory to this Project folder:
 </br>
